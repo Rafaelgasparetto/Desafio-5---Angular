@@ -50,17 +50,27 @@ mat-form-field{
     color:#F6511D !important;
 }
 
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 0px !important; 
+}
+
 ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
    background-color: #F6511D !important;
    border: 1px solid #F6511D;
 }
 
-#input_cadastrar_genero button{
+#btn_salvar_generos{
     height: 58px;
     width: 180px;
     border-radius: 0px;
     background: #F6511D;
     color: white;
+}
+
+#btn_salvar_generos:disabled{
+    background-color: gray;
 }
 
 

@@ -7,7 +7,7 @@
 
         <form [formGroup]="formCadastrarGenero" (ngSubmit)="SalvarDadosGeneros()" id="input_cadastrar_genero">
             <div>
-                <mat-form-field>
+                <mat-form-field appearance="fill">
                     <mat-label>Cadastrar Gênero</mat-label>
                     <input formControlName="genero" name="genero" matInput placeholder="Gênero" required>
                      <mat-error> {{error}} </mat-error> 

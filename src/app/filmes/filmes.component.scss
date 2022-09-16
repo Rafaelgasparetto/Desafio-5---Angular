@@ -76,8 +76,18 @@ mat-option{
     color: white;
 }
 
+#cadastrar_filmes form button:disabled{
+    background-color: gray;
+}
+
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-label{
     color:#F6511D !important;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 0px !important; 
 }
 
 ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{

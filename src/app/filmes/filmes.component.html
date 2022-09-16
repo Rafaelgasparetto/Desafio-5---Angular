@@ -10,11 +10,11 @@
         <div id="cadastrar_filmes">
             <h2>Cadastrar Filmes</h2>
             <form [formGroup]="formCadastrarFilmes" (ngSubmit)="SalvarDadosFilmes()">
-                <mat-form-field>
+                <mat-form-field appearance="fill">
                     <input formControlName="titulo" name="titulo" matInput placeholder="Titulo do filme" required>
                     <mat-error>{{error}}</mat-error>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field appearance="fill">
                     <mat-label>Gênero</mat-label>
                     <mat-select formControlName="genero" name="genero" required>
                     <mat-option value="0">Ação</mat-option>
