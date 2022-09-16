@@ -1,0 +1,136 @@
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#conteudo_pagina_filmes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+mat-card-subtitle{
+    height: 28px;
+    width: 72px;
+    border-radius: nullpx;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    margin-top: 5%;
+    color: black;
+}
+
+#div_img{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#div_img img{
+    height: 100px;
+    width: 100px;
+    border-radius: 0px;
+}
+
+#cadastrar_filmes{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+#cadastrar_filmes h2{
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+#cadastrar_filmes form{
+    display: flex;
+    gap: 50px;
+}
+
+mat-form-field{
+    height: 58px;
+    width: 400px;
+    border-radius: 0px;
+    color: #F6511D;
+}
+
+mat-option{
+    color:#F6511D;
+}
+
+#cadastrar_filmes form button{
+    height: 58px;
+    width: 180px;
+    border-radius: 0px;
+    background: #F6511D;
+    color: white;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label{
+    color:#F6511D !important;
+}
+
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+   background-color: #F6511D !important;
+   border: 1px solid #F6511D;
+}
+
+#div_filmes_cadastrados{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+#filmes_cadastrados{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3%;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+
+.card_cadastrados{
+    display: flex;
+    gap: 189px;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 3%;
+}
+
+.btn_editar_filmes{
+    height: 35px;
+    width: 125px;
+    border-radius: 20px;
+    background: #F6511D;
+    border: 2px solid #F6511D;
+    border-radius: 20px;
+    box-sizing: border-box;
+    color: white;
+}
+
+.btn_excluir_filmes{
+    height: 35px;
+    width: 125px;
+    border-radius: 20px;
+    background: #41B8D2;
+    border: 2px solid #41B8D2;
+    border-radius: 20px;
+    box-sizing: border-box;
+    color: black;
+}

@@ -1,0 +1,43 @@
+<header>
+    
+    <div id="div_header_logo">
+        <img src="../../assets/SRC HEADER IMG/Group 2.png" alt="Logo da Locadora">
+
+        <div id="ngContainer">
+        <ng-container *ngIf="router.routerState.snapshot.url == '/home'">
+            <p>Conheça nossa Coletânea</p>                  //Mudando o ngContainer para a rota Home
+        </ng-container>
+
+        <ng-container *ngIf="router.routerState.snapshot.url == '/usuario'">
+            <p>Faça o cadastro de usúarios e edite, caso necessario <br>
+            Pronto para cadastrar?</p>                      //Mudando o ngContainer para a rota Usuario
+        </ng-container>
+
+        <ng-container *ngIf="router.routerState.snapshot.url == '/filmes'">
+            <p>Cadastre os filmes de sua preferencia</p>            //Mudando o ngContainer para a rota Filmes
+        </ng-container>
+
+        <ng-container *ngIf="router.routerState.snapshot.url == '/genero'">
+            <p>Cadastre os genero dos filmes</p>                //Mudando o ngContainer para a rota Genero
+        </ng-container>
+        </div>
+
+    </div>
+
+    <div id="nav_header">
+        <ul>
+            <li>
+                <a routerLink="../home">Home</a>
+            </li>
+            <li>
+                <a routerLink="../usuario">Usúarios</a>
+            </li>
+            <li>
+                <a routerLink="../filmes">Filmes</a>
+            </li>
+            <li>
+                <a routerLink="../genero">Gênero</a>
+            </li>
+        </ul>
+    </div>
+</header>

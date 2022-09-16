@@ -1,0 +1,121 @@
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-card{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+mat-card-subtitle{
+    width: 98px;
+    height: 28px;
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: black;
+}
+
+mat-card-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#cadastrar{
+    display: flex;
+    align-items: flex-start;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#cadastrar_inside{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+mat-form-field{
+    margin: 1%;
+    width: 320px;
+    height: 58px;
+    color:#F6511D;   
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label{
+    color:#F6511D !important;
+}
+
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+   background-color: #F6511D !important;
+   border: 1px solid #F6511D;
+}
+
+
+#div_btn_cadastrar{
+    display: flex;
+    align-items: center;
+    margin: 1%;
+}
+
+#btn_cadastrar_submit{
+    height: 58px;
+    width: 180px;
+    border-radius: 0px;
+    background: #F6511D;
+    color: white;
+}
+
+#div_cadastrados{
+    display: flex;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+#mat_card_cadastrados{
+    display: flex;
+    margin-top: 2%;
+    align-items: flex-end;
+}
+
+.card_cadastrados{
+    display: flex;
+    gap: 80px;
+    margin-bottom: 5%;
+    align-items: baseline;
+}
+
+.btn_editar_usuario{
+    height: 35px;
+    width: 125px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    background-color: #F6511D;
+    border: 2px solid #F6511D;
+    color: white;
+}
+
+.btn_excluir_usuario{
+    height: 35px;
+    width: 125px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    background-color: #41B8D2;;
+    border: 2px solid #41B8D2;;
+}
+
+

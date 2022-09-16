@@ -1,0 +1,63 @@
+
+<section>
+    <mat-card>
+        <mat-card-subtitle>Cadastro</mat-card-subtitle>
+        <mat-card-content>
+
+            <form [formGroup]="formCadastrarUsuario" (ngSubmit)="SalvarDadosUsuario()" id="cadastrar">
+                <div id="cadastrar_inside">
+                    <mat-form-field>
+                        <mat-label>Nome</mat-label>
+                        <input formControlName="nome" matInput name="nome" placeholder="Digite o nome completo" required>
+                        <mat-error>{{error}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>E-mail</mat-label>
+                        <input formControlName="email" matInput name="email" placeholder="exemplo@exemplo.com" required>
+                        <mat-error *ngIf="formCadastrarUsuario.get('email')?.hasError('required') || formCadastrarUsuario.get('email')?.hasError('email')"> {{validaEmail()}} </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Telefone</mat-label>
+                        <input formControlName="tel" matInput name="tel" placeholder="DD+numero (apenas numeros)" required>
+                        <mat-error *ngIf="formCadastrarUsuario.get('tel')?.hasError('required') || formCadastrarUsuario.get('tel')?.hasError('NaN')" >{{confirmarTelefone()}}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div id="div_btn_cadastrar">
+                    <button mat-raised-button type="submit" id="btn_cadastrar_submit" [disabled]="!formCadastrarUsuario.valid" >Cadastrar</button>
+                </div>
+            </form>
+
+            <div id="div_cadastrados">
+                <mat-card id="mat_card_cadastrados">
+                    <div class="card_cadastrados">
+                        <p>Paulo Andre</p>
+                        <p>paulo@email.com</p>
+                        <p>3349 6788</p>
+                        <button class="btn_editar_usuario" mat-raised-button>Editar</button>
+                        <button class="btn_excluir_usuario" mat-raised-button>Excluir</button>
+                    </div>
+                    <div class="card_cadastrados">
+                        <p>Marcos Lucio</p>
+                        <p>marcos@email.com</p>
+                        <p>3349 6788</p>
+                        <button class="btn_editar_usuario" mat-raised-button>Editar</button>
+                        <button class="btn_excluir_usuario" mat-raised-button>Excluir</button>
+                    </div>
+
+                    <div class="card_cadastrados">
+                        <p>Laura Port</p>
+                        <p>laura@email.com</p>
+                        <p>3349 6788</p>
+                        <button class="btn_editar_usuario" mat-raised-button>Editar</button>
+                        <button class="btn_excluir_usuario" mat-raised-button>Excluir</button>
+                    </div>
+                </mat-card>
+            </div>
+        </mat-card-content>
+
+    </mat-card>
+
+</section>

@@ -1,0 +1,56 @@
+
+<section>
+    <div id="conteudo_pagina_filmes">
+        
+        <div id="div_img">
+        <mat-card-subtitle>Filmes</mat-card-subtitle>
+        <img src="../../assets/SRC HOME IMG/cinema 1.png" alt="Uma imagem de um rolo de filme antigo">
+        </div>
+
+        <div id="cadastrar_filmes">
+            <h2>Cadastrar Filmes</h2>
+            <form [formGroup]="formCadastrarFilmes" (ngSubmit)="SalvarDadosFilmes()">
+                <mat-form-field>
+                    <input formControlName="titulo" name="titulo" matInput placeholder="Titulo do filme" required>
+                    <mat-error>{{error}}</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Gênero</mat-label>
+                    <mat-select formControlName="genero" name="genero" required>
+                    <mat-option value="0">Ação</mat-option>
+                    <mat-option value="1">Comédia</mat-option>
+                    <mat-option value="2">Terror</mat-option>
+                    </mat-select>
+                    <mat-error>{{error}}</mat-error>
+                </mat-form-field>
+                <button mat-raised-button type="submit" id="btn_salvar_filmes" [disabled]="!formCadastrarFilmes.valid">Salvar</button>
+            </form>
+        </div>
+
+        <div id="div_filmes_cadastrados">
+            <mat-card id="filmes_cadastrados">
+                <div class="card_cadastrados">
+                    <p>Os outros</p>
+                    <p>Terror</p>
+                    <button class="btn_editar_filmes" mat-raised-button>Editar</button>
+                    <button class="btn_excluir_filmes"  mat-raised-button>Excluir</button>            
+                </div>
+
+                <div class="card_cadastrados">
+                    <p>Até o ultimo homem</p>
+                    <p>Ação</p>
+                    <button class="btn_editar_filmes" mat-raised-button>Editar</button>
+                    <button class="btn_excluir_filmes" mat-raised-button>Excluir</button>            
+                </div>
+
+                <div class="card_cadastrados">
+                    <p>O máscara</p>
+                    <p>Comédia</p>
+                    <button class="btn_editar_filmes" mat-raised-button>Editar</button>
+                    <button class="btn_excluir_filmes" mat-raised-button>Excluir</button>            
+                </div>
+            </mat-card>
+        </div>
+    </div>
+
+</section>
