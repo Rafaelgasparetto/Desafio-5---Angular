@@ -5,20 +5,24 @@
 
         <div id="ngContainer">
         <ng-container *ngIf="router.routerState.snapshot.url == '/home'">
-            <p>Conheça nossa Coletânea</p>                  //Mudando o ngContainer para a rota Home
+            <p>Conheça nossa Coletânea</p>                  
+            <!-- Mudando o ngContainer para a rota Home -->
         </ng-container>
 
         <ng-container *ngIf="router.routerState.snapshot.url == '/usuario'">
             <p>Faça o cadastro de usúarios e edite, caso necessario <br>
-            Pronto para cadastrar?</p>                      //Mudando o ngContainer para a rota Usuario
+            Pronto para cadastrar?</p>                     
+             <!-- //Mudando o ngContainer para a rota Usuario -->
         </ng-container>
 
         <ng-container *ngIf="router.routerState.snapshot.url == '/filmes'">
-            <p>Cadastre os filmes de sua preferencia</p>            //Mudando o ngContainer para a rota Filmes
+            <p>Cadastre os filmes de sua preferencia</p>           
+             <!-- //Mudando o ngContainer para a rota Filmes -->
         </ng-container>
 
         <ng-container *ngIf="router.routerState.snapshot.url == '/genero'">
-            <p>Cadastre os genero dos filmes</p>                //Mudando o ngContainer para a rota Genero
+            <p>Cadastre os genero dos filmes</p>               
+             <!-- //Mudando o ngContainer para a rota Genero -->
         </ng-container>
         </div>
 
