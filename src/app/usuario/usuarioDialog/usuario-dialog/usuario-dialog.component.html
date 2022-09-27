@@ -12,7 +12,7 @@
         <mat-form-field appearance="fill">
             <mat-label>E-mail: </mat-label>
             <input matInput formControlName="d_email" name="d_email"  value="{{data.email}}" required>
-            <mat-error>{{error}}</mat-error>
+            <mat-error *ngIf="form.get('d_email')?.hasError('required') || form.get('d_email')?.hasError('email')"> {{validaEmail()}} </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -20,13 +20,21 @@
             <input matInput formControlName="d_tel" name="d_tel"  value="{{data.tel}}"  required>
             <mat-error>{{error}}</mat-error>
         </mat-form-field>
+
+        <mat-form-field appearance="fill" id="hide_input">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="d_id" name="d_id"  value="{{data.id}}"  required>
+            <mat-error>{{error}}</mat-error>
+        </mat-form-field>
+
+        
         
     </form>
 
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="cancelar()">Cancelar</button>
-  <button mat-button  cdkFocusInitial  >Editar</button>
+  <button mat-button  cdkFocusInitial (click)="editarCliente()" [disabled]="!form.valid" >Editar</button>
 </div>
 
 

@@ -26,58 +26,56 @@ export class UsuarioDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({ // defenindo elementos
-      d_nome: ['', [Validators.required]],
-      d_email: ['',  [Validators.required, Validators.email]], //Validando os Inputs
-      d_tel: ['',  [Validators.required]], 
+      d_nome: new FormControl ('', [Validators.required]),
+      d_email: new FormControl ('',  [Validators.required, Validators.email]), //Validando os Inputs
+      d_tel: new FormControl ('',  [Validators.required]),
+      d_id: [''] 
     })
-    console.log(this.data);
-    
-    this.idGlobal = this.data.id
 
-    console.log(this.data.nome);
-    
+    this.form.controls['d_id'].setValue(this.data.id)
     this.form.controls['d_nome'].setValue(this.data.nome);
     this.form.controls['d_email'].setValue(this.data.email);
     this.form.controls['d_tel'].setValue(this.data.tel);
 
-
   }
 
+
+
+  editarCliente(){
+
+    let dataDialog: usuario = { 
+
+    id: this.form.controls['d_id'].value,
+    nome: this.form.controls['d_nome'].value,
+    email: this.form.controls['d_email'].value,
+    tel: this.form.controls['d_tel'].value
+
+    };
+
+    console.log(this.data);
+
+    this.data.id = this.form.controls['d_id'].value,
+    this.data.nome = this.form.controls['d_nome'].value,
+    this.data.email = this.form.controls['d_email'].value,
+    this.data.tel = this.form.controls['d_tel'].value
+
+
+    this.dialogRef.close(this.data);
+
+
+  }
+  
   cancelar(): void {
     this.dialogRef.close();
   }
 
-  puxarInput(id: any, nome: String, email: String, tel: String){
-
-
-    // this.form.controls[""]
-
-
-
-    // this.salvarClientesService.editarCliente.subscribe({
-    //   next: () => {
-    //     this.idGlobal = id
-
-    //     this.form.controls["d_name"].setValue(nome);
-    //     this.form.controls["d_email"].setValue(email);
-    //     this.form.controls["tel"].setValue(tel);
-    //   },
-    //   error: (){
-    //     console.log("error");
-        
-    //   }
-    // })
-
-
-    // this.idGlobal = id
-
-    // this.form.controls["d_name"].setValue(nome);
-    // this.form.controls["d_email"].setValue(email);
-    // this.form.controls["tel"].setValue(tel);
-
+  validaEmail(): String{
+    
+    if(this.form.controls["d_email"].hasError('required')){
+      return this.error;
+    }
+    return this.form.controls["d_email"].hasError('email') ? "E-mail inválido" : '';
   }
-  
-  
   
 
   

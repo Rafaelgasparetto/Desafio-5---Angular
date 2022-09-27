@@ -63,8 +63,8 @@ export class UsuarioComponent implements OnInit {
           });
         
 
-        dialogRef.afterClosed().subscribe(usuario => {
-          this.salvarClientesService.editarCliente(usuario).subscribe({
+        dialogRef.afterClosed().subscribe(usuario2 => {
+          this.salvarClientesService.editarCliente(usuario2).subscribe({
             next:() => {
               this.ngOnInit();
             },
@@ -144,18 +144,6 @@ export class UsuarioComponent implements OnInit {
       }
     })
   }
-
-
-
-  // puxarInput(id: any, nome: String, email: String, tel: String){
-
-  //   this.idGlobal = id
-
-  //   this.formCadastrarUsuario.controls["nome"].setValue(nome)
-  //   this.formCadastrarUsuario.controls["email"].setValue(email)
-  //   this.formCadastrarUsuario.controls["tel"].setValue(tel)
-
-  // }
 
 
 
