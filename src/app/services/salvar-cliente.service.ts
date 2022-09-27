@@ -34,8 +34,12 @@ export class SalvarClienteService {
     return this.httpClient.delete(`${this.url}/${id}`);
   }
 
-  editarCliente(id: any, data: any){
-    return this.httpClient.put(`${this.url}/${id}`, data);
+  editarCliente(usuario: usuario){
+    return this.httpClient.put(`${this.url}/${usuario.id}`, usuario);
+  }
+
+  pegarId(id: number): Observable<usuario>{
+    return this.httpClient.get<usuario>(`${this.url}/${id}`);
   }
 
 

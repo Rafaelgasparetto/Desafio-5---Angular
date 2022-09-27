@@ -5,19 +5,19 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Nome: </mat-label>
-            <input matInput formControlName="d_nome" name="d_nome" required>
+            <input matInput formControlName="d_nome" name="d_nome" value="{{data.nome}}"  required>
             <mat-error>{{error}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>E-mail: </mat-label>
-            <input matInput formControlName="d_email" name="d_email" required>
+            <input matInput formControlName="d_email" name="d_email"  value="{{data.email}}" required>
             <mat-error>{{error}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Telefone</mat-label>
-            <input matInput formControlName="d_tel" name="d_tel" required>
+            <input matInput formControlName="d_tel" name="d_tel"  value="{{data.tel}}"  required>
             <mat-error>{{error}}</mat-error>
         </mat-form-field>
         
@@ -33,3 +33,7 @@
 <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Editar</button> -->
 
 <!-- <input matInput [(ngModel)]="usuarios.nome"> -->
+
+<!-- [(ngModel)]="this.data.nome" -->
+<!-- [(ngModel)]="this.data.email" -->
+<!-- [(ngModel)]="this.data.tel" -->

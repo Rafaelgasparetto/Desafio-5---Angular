@@ -1,6 +1,6 @@
 export interface usuario{
     "id": number;
-    "nome": String;
-    "email": String;
-    "tel":  String;
+    "nome": string;
+    "email": string;
+    "tel":  string;
 }

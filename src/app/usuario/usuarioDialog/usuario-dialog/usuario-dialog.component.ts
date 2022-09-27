@@ -26,13 +26,20 @@ export class UsuarioDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({ // defenindo elementos
-      d_nome: new FormControl('', [Validators.required]),
-      d_email: new FormControl('',  [Validators.required, Validators.email]), //Validando os Inputs
-      d_tel: new FormControl('',  [Validators.required]), 
+      d_nome: ['', [Validators.required]],
+      d_email: ['',  [Validators.required, Validators.email]], //Validando os Inputs
+      d_tel: ['',  [Validators.required]], 
     })
     console.log(this.data);
     
-    this.puxarInput(this.data.id, this.data.nome, this.data.email, this.data.tel);
+    this.idGlobal = this.data.id
+
+    console.log(this.data.nome);
+    
+    this.form.controls['d_nome'].setValue(this.data.nome);
+    this.form.controls['d_email'].setValue(this.data.email);
+    this.form.controls['d_tel'].setValue(this.data.tel);
+
 
   }
 
@@ -42,11 +49,31 @@ export class UsuarioDialogComponent implements OnInit {
 
   puxarInput(id: any, nome: String, email: String, tel: String){
 
-    this.idGlobal = id
 
-    this.form.controls["d_name"].setValue(nome);
-    this.form.controls["d_email"].setValue(email);
-    this.form.controls["tel"].setValue(tel);
+    // this.form.controls[""]
+
+
+
+    // this.salvarClientesService.editarCliente.subscribe({
+    //   next: () => {
+    //     this.idGlobal = id
+
+    //     this.form.controls["d_name"].setValue(nome);
+    //     this.form.controls["d_email"].setValue(email);
+    //     this.form.controls["tel"].setValue(tel);
+    //   },
+    //   error: (){
+    //     console.log("error");
+        
+    //   }
+    // })
+
+
+    // this.idGlobal = id
+
+    // this.form.controls["d_name"].setValue(nome);
+    // this.form.controls["d_email"].setValue(email);
+    // this.form.controls["tel"].setValue(tel);
 
   }
   

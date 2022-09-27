@@ -24,5 +24,38 @@
       "email": "rafa@gmil",
       "tel": "123"
     }
-  ]
+  ],
+  "filmes":[
+    {
+        "id": 1,
+        "nomeFilme": "Os outros",
+        "genero": "Terror"
+    },
+    {
+        "id": 2,
+        "nomeFilme": "Até o ultimo homem",
+        "genero": "Ação"
+    },
+    {
+        "id": 3,
+        "nomeFilme": "O Máscara",
+        "genero": "Comédia"
+    }
+  ],
+  "generos":[
+    {
+        "id": 1,
+        "generoNome": "Terror"
+    },
+    {
+        "id": 2,
+        "generoNome": "Ação"
+    },
+    {
+        "id": 3,
+        "generoNome": "Comédia"
+    }
+]
+
+
 }

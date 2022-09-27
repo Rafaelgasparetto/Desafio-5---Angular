@@ -51,30 +51,38 @@ export class UsuarioComponent implements OnInit {
 
   }
 
-  openDialog(id: any, nome: String, email: String, tel: String): void {
-    const dialogRef = this.dialog.open(UsuarioDialogComponent, {
-      width: '250px',
-      data: {id, nome, email, tel}
-    });
+  openDialog(id: number, enterAnimationDuration: string,
+    exitAnimationDuration: string): void {
+      this.salvarClientesService.pegarId(id).subscribe({
+        next: (usuario: usuario) =>{
+          const dialogRef = this.dialog.open(UsuarioDialogComponent, {
+            width: '250px',
+            enterAnimationDuration,
+            exitAnimationDuration,
+            data: {id: usuario.id, nome: usuario.nome, email: usuario.email, tel: usuario.tel}
+          });
+        
 
-    this.idGlobal = id;
+        dialogRef.afterClosed().subscribe(usuario => {
+          this.salvarClientesService.editarCliente(usuario).subscribe({
+            next:() => {
+              this.ngOnInit();
+            },
+            error:() => {
+              console.log("erro");
+        },
+          });
 
-    this.formCadastrarUsuario.controls["nome"].setValue(nome)
-    this.formCadastrarUsuario.controls["email"].setValue(email)
-    this.formCadastrarUsuario.controls["tel"].setValue(tel)
+        });
 
-     
-    console.log(this.idGlobal);
-    console.log(nome);
-    console.log(email);
-    console.log(tel);
+      },
+      error:() =>{
+        console.log("erro");
+        
+      },});}
+
+
     
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('O dialogo foi Fechado');
-      // this.animal = result;
-    });
-  }
 
   validaEmail(): String{
     
