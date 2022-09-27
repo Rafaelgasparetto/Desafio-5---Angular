@@ -1,0 +1,19 @@
+{
+    "filmes":[
+        {
+            "id": 1,
+            "nome_filme": "Os outros",
+            "genero": "Terror"
+        },
+        {
+            "id": 2,
+            "nome_filme": "Até o ultimo homem",
+            "genero": "Ação"
+        },
+        {
+            "id": 3,
+            "nome_filme": "O Máscara",
+            "genero": "Comédia"
+        }
+    ]
+}

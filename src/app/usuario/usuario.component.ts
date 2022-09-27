@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { usuario } from '../models/criar-usuarios.models';
 import { SalvarClienteService } from '../services/salvar-cliente.service';
+import { UsuarioDialogComponent } from './usuarioDialog/usuario-dialog/usuario-dialog.component';
 
 @Component({
   selector: 'app-usuario',
@@ -17,11 +19,13 @@ export class UsuarioComponent implements OnInit {
   error = "Este campo é obrigatorio"
   clientes: usuario[];
   
+  
 
   constructor(
     private formBuilder: FormBuilder,
     private salvarClientesService : SalvarClienteService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) 
   {  }
 
@@ -36,7 +40,7 @@ export class UsuarioComponent implements OnInit {
       next: (clientes: usuario[]) => {
         this.clientes = clientes;
 
-        console.log(this.clientes);
+        // console.log(this.clientes);
         
       },
       error: () => {
@@ -45,6 +49,31 @@ export class UsuarioComponent implements OnInit {
     })
 
 
+  }
+
+  openDialog(id: any, nome: String, email: String, tel: String): void {
+    const dialogRef = this.dialog.open(UsuarioDialogComponent, {
+      width: '250px',
+      data: {id, nome, email, tel}
+    });
+
+    this.idGlobal = id;
+
+    this.formCadastrarUsuario.controls["nome"].setValue(nome)
+    this.formCadastrarUsuario.controls["email"].setValue(email)
+    this.formCadastrarUsuario.controls["tel"].setValue(tel)
+
+     
+    console.log(this.idGlobal);
+    console.log(nome);
+    console.log(email);
+    console.log(tel);
+    
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('O dialogo foi Fechado');
+      // this.animal = result;
+    });
   }
 
   validaEmail(): String{
@@ -109,16 +138,16 @@ export class UsuarioComponent implements OnInit {
   }
 
 
-  puxarInput(id: any, nome: String, email: String, tel: String){
 
-    this.idGlobal = id
+  // puxarInput(id: any, nome: String, email: String, tel: String){
 
-    this.formCadastrarUsuario.controls["nome"].setValue(nome)
-    this.formCadastrarUsuario.controls["email"].setValue(email)
-    this.formCadastrarUsuario.controls["tel"].setValue(tel)
+  //   this.idGlobal = id
 
-  }
+  //   this.formCadastrarUsuario.controls["nome"].setValue(nome)
+  //   this.formCadastrarUsuario.controls["email"].setValue(email)
+  //   this.formCadastrarUsuario.controls["tel"].setValue(tel)
 
+  // }
 
 
 

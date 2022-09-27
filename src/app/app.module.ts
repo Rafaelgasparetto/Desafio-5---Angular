@@ -18,6 +18,8 @@ import { GeneroComponent } from './genero/genero.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { UsuarioDialogComponent } from './usuario/usuarioDialog/usuario-dialog/usuario-dialog.component';
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HomeComponent,
     UsuarioComponent,
     FilmesComponent,
-    GeneroComponent
+    GeneroComponent,
+    UsuarioDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatInputModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

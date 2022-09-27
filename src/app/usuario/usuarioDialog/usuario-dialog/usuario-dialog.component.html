@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>Editar cadastro de: <br> {{data.nome}}</h1>
+<div mat-dialog-content>
+  <p>Tela de Editar</p>
+    <form [formGroup]="form">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Nome: </mat-label>
+            <input matInput formControlName="d_nome" name="d_nome" required>
+            <mat-error>{{error}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>E-mail: </mat-label>
+            <input matInput formControlName="d_email" name="d_email" required>
+            <mat-error>{{error}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Telefone</mat-label>
+            <input matInput formControlName="d_tel" name="d_tel" required>
+            <mat-error>{{error}}</mat-error>
+        </mat-form-field>
+        
+    </form>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-button  cdkFocusInitial  >Editar</button>
+</div>
+
+
+<!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Editar</button> -->
+
+<!-- <input matInput [(ngModel)]="usuarios.nome"> -->

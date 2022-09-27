@@ -1,0 +1,13 @@
+{
+    "generos":[
+        {
+            "genero_nome": "Terror"
+        },
+        {
+            "genero_nome": "Ação"
+        },
+        {
+            "genero_nome": "Comédia"
+        }
+    ]
+}
