@@ -1,0 +1,28 @@
+{
+  "clientes": [
+    {
+      "id": 1,
+      "nome": "Paulo Andre",
+      "email": "paulo@email.com",
+      "tel": "113349 6788"
+    },
+    {
+      "id": 2,
+      "nome": "Marcos Lucio",
+      "email": "marcos@email.com",
+      "tel": "113349 6788"
+    },
+    {
+      "id": 3,
+      "nome": "Laura Port",
+      "email": "laura@email.com",
+      "tel": "113349 6788"
+    },
+    {
+      "id": 4,
+      "nome": "rafa",
+      "email": "teste@teste3",
+      "tel": "123"
+    }
+  ]
+}

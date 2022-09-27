@@ -33,31 +33,18 @@
             </form>
 
             <div id="div_cadastrados">
-                <mat-card id="mat_card_cadastrados">
+                <mat-card id="mat_card_cadastrados" *ngFor="let usuarios of clientes">
 
-                    <div class="card_cadastrados">
-                        <p>Paulo Andre</p>
-                        <p>paulo@email.com</p>
-                        <p>3349 6788</p>
-                        <button class="btn_editar_usuario" mat-raised-button>Editar</button>
-                        <button class="btn_excluir_usuario" mat-raised-button>Excluir</button>
+                    <div class="card_cadastrados" >
+                        <div class="card_inside">
+                            <div> <p><b>Nome: </b>{{usuarios.nome}}</p> </div>
+                            <div> <p><b>E-mail: </b>{{usuarios.email}}</p> </div>
+                            <div> <p><b>Telefone: </b>{{usuarios.tel}}</p> </div>
+                            <div> <button class="btn_editar_usuario" mat-raised-button (click)="puxarInput(usuarios.id, usuarios.nome, usuarios.email, usuarios.tel)" >Editar</button> </div>
+                            <div> <button class="btn_excluir_usuario" mat-raised-button (click)="excluirCliente(usuarios.id)" >Excluir</button> </div>
+                        </div>
                     </div>
 
-                    <div class="card_cadastrados">
-                        <p>Marcos Lucio</p>
-                        <p>marcos@email.com</p>
-                        <p>3349 6788</p>
-                        <button class="btn_editar_usuario" mat-raised-button>Editar</button>
-                        <button class="btn_excluir_usuario" mat-raised-button>Excluir</button>
-                    </div>
-
-                    <div class="card_cadastrados">
-                        <p>Laura Port</p>
-                        <p>laura@email.com</p>
-                        <p>3349 6788</p>
-                        <button class="btn_editar_usuario" mat-raised-button>Editar</button>
-                        <button class="btn_excluir_usuario" mat-raised-button>Excluir</button>
-                    </div>
 
                 </mat-card>
             </div>

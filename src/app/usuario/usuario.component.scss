@@ -11,6 +11,8 @@ mat-card{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border: 1px solid gray;
+
 }
 
 mat-card-subtitle{
@@ -49,7 +51,7 @@ mat-form-field{
     margin: 1%;
     width: 320px;
     height: 58px;
-    color:#F6511D;   
+    font-size: 15px;
 }
 
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-label{
@@ -68,6 +70,17 @@ mat-form-field{
    border: 1px solid #F6511D;
 }
 
+.card_inside{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    justify-items: flex-end;
+    align-items: baseline;
+}
+
+b{
+    color: #f79a7e;
+}
 
 #div_btn_cadastrar{
     display: flex;
@@ -98,6 +111,8 @@ mat-form-field{
     line-height: 23px;
     letter-spacing: 0em;
     text-align: left;
+    flex-direction: column;
+    align-items: center;
 }
 
 #mat_card_cadastrados{
