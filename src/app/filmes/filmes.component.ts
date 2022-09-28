@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Filme } from '../models/criar-filmes.models';
+import { Genero } from '../models/criar-generos.models';
 import { SalvarFilmeService } from '../services/salvar-filme.service';
+import { SalvarGeneroService } from '../services/salvar-genero.service';
 import { FilmeDialogComponent } from './FilmeDialog/filme-dialog/filme-dialog.component';
 
 @Component({
@@ -16,11 +18,13 @@ export class FilmesComponent implements OnInit {
   formCadastrarFilmes: FormGroup; // o FormGoup é para Agrupar os elementos
   error = "Este campo é obrigatorio"
   filmes: Filme[];
+  generos: Genero[];
 
   constructor(
     private formBuilder: FormBuilder,
     private salvarFilmeService: SalvarFilmeService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private salvarGeneroService: SalvarGeneroService,
     ) { }
 
   ngOnInit(): void {
@@ -41,6 +45,20 @@ export class FilmesComponent implements OnInit {
         console.log("Erro para ler o filme");
       }
     })
+
+    this.salvarGeneroService.lerGeneros().subscribe({
+      next: (generos: Genero[]) => {
+        this.generos = generos;
+  
+        console.log(this.generos);
+        
+      },
+      error: () => {
+        console.log("erro ao ler Generos no select");
+      }
+     })
+
+    
 
   }
 

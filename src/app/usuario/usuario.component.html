@@ -35,9 +35,9 @@
 
                     <div class="card_cadastrados" >
                         <div class="card_inside">
-                            <div> <p><span>Nome: </span> {{usuarios.nome}}</p> </div>
-                            <div> <p><span>E-mail: </span>{{usuarios.email}}</p> </div>
-                            <div> <p><span>Telefone: </span>{{usuarios.tel}}</p> </div>
+                            <div> <p> {{usuarios.nome}} </p> </div>
+                            <div> <p> {{usuarios.email}} </p> </div>
+                            <div> <p> {{usuarios.tel}} </p> </div>
                             <div> <button class="btn_editar_usuario" mat-raised-button  (click)="openDialog(usuarios.id, '0ms', '0ms')" >Editar</button> </div>
                             <div> <button class="btn_excluir_usuario" mat-raised-button (click)="excluirCliente(usuarios.id)" >Excluir</button> </div>
                         </div>

@@ -15,15 +15,15 @@
                     <input formControlName="titulo" name="titulo" matInput placeholder="Titulo do filme" required>
                     <mat-error>{{error}}</mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="fill">
+
+                <mat-form-field appearance="fill" >
                     <mat-label>Gênero</mat-label>
                     <mat-select formControlName="genero" name="genero" required>
-                    <mat-option value="Ação">Ação</mat-option>
-                    <mat-option value="Comédia">Comédia</mat-option>
-                    <mat-option value="Terror">Terror</mat-option>
+                    <mat-option *ngFor="let select of generos" [value]="select">{{select.generoNome}}</mat-option>
                     </mat-select>
                     <mat-error>{{error}}</mat-error>
                 </mat-form-field>
+
                 <button mat-raised-button type="submit" id="btn_salvar_filmes" [disabled]="!formCadastrarFilmes.valid">Salvar</button>
             </form>
         </div>
@@ -33,8 +33,8 @@
             <mat-card id="filmes_cadastrados">
 
                 <div class="card_cadastrados">
-                    <div> <p> <span>Filme: </span>{{filme.filmeNome}}</p> </div>
-                    <div> <p> <span>Gênero: </span>{{filme.generoNome}}</p> </div>
+                    <div> <p> {{filme.filmeNome}} </p> </div>
+                    <div> <p> {{filme.generoNome}} </p> </div>
                     <button class="btn_editar_filmes" mat-raised-button (click)="openDialog(filme.id, '0ms', '0ms')" >Editar</button>
                     <button class="btn_excluir_filmes"  mat-raised-button (click)="excluirFilme(filme.id)" >Excluir</button>            
                 </div>

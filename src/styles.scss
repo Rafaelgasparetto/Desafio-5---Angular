@@ -42,3 +42,27 @@ $Locadora-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+
+.btn_dialog_cancelar{
+  border-radius: 20px;
+  box-sizing: border-box;
+  background-color: #41B8D2;
+  border: 2px solid #41B8D2;
+}
+
+.btn_dialog_editar{
+  border-radius: 20px;
+  box-sizing: border-box;
+  background-color: #F6511D;
+  border: 2px solid #F6511D;
+  color: white;
+}
+
+.btn_dialog_editar:disabled{
+  background-color: gray;
+}
+
+
