@@ -20,26 +20,15 @@
     },
     {
       "id": 4,
-      "nome": "Rafael Gasparetto",
-      "email": "rafa@gmail",
-      "tel": "1234435"
-    }
-  ],
-  "filmes": [
-    {
-      "id": 1,
-      "nomeFilme": "Os outros",
-      "genero": "Terror"
+      "nome": "Teste3",
+      "email": "rafa@gmil",
+      "tel": "123"
     },
     {
-      "id": 2,
-      "nomeFilme": "Até o ultimo homem",
-      "genero": "Ação"
-    },
-    {
-      "id": 3,
-      "nomeFilme": "O Máscara",
-      "genero": "Comédia"
+      "id": 5,
+      "nome": "Teste33",
+      "email": "rafa@gmilffff",
+      "tel": "123fffffffffff"
     }
   ],
   "generos": [
@@ -53,6 +42,23 @@
     },
     {
       "id": 3,
+      "generoNome": "Comédia"
+    }
+  ],
+  "filmes": [
+    {
+      "id": 1,
+      "nomeFilme": "Os outros",
+      "generoNome": "Terror"
+    },
+    {
+      "id": 2,
+      "nome": "Até o ultimo homem",
+      "generoNome": "Ação"
+    },
+    {
+      "id": 3,
+      "nomeFilme": "O máscara",
       "generoNome": "Comédia"
     }
   ]

@@ -5,7 +5,7 @@
             <img src="../../assets/SRC HOME IMG/theater 1.png" alt="Imagens de mascara de teatro">
         </div>
 
-        <form [formGroup]="formCadastrarGenero" (ngSubmit)="SalvarDadosGeneros()" id="input_cadastrar_genero">
+        <form [formGroup]="formCadastrarGenero" id="input_cadastrar_genero" (submit)="salvarDadosGeneros()">
             <div>
                 <mat-form-field appearance="fill">
                     <mat-label>Cadastrar Gênero</mat-label>
@@ -18,26 +18,20 @@
             </div>
         </form>
 
-        <mat-card id="card_genero_resp">
-            <div>
-                <div class="card_genero">
-                    <p>Terror</p>
-                    <button class="btn_editar_genero" mat-raised-button>Editar</button>
-                    <button class="btn_excluir_genero" mat-raised-button>Excluir</button>
-                </div>
-                <div class="card_genero">
-                    <p>Ação</p>
-                    <button class="btn_editar_genero" mat-raised-button>Editar</button>
-                    <button class="btn_excluir_genero" mat-raised-button>Excluir</button>
-                </div>
-                <div class="card_genero">
-                    <p>Comédia</p>
-                    <button class="btn_editar_genero" mat-raised-button>Editar</button>
-                    <button class="btn_excluir_genero" mat-raised-button>Excluir</button>
-                </div>
-            </div>
-        </mat-card>
+        <div>
+            <mat-card id="card_genero_resp" *ngFor="let genero of generos">
 
+                <div>
+
+                    <div class="card_genero">
+                        <div> <p> <b>Gênero: </b> {{genero.generoNome}} </p> </div>
+                        <div> <button class="btn_editar_genero" mat-raised-button>Editar</button> </div>
+                        <div> <button class="btn_excluir_genero" mat-raised-button (click)="excluirGeneros(genero.id)" >Excluir</button> </div>
+                    </div>
+
+                </div>
+            </mat-card>
+        </div>
     </div>
 
 

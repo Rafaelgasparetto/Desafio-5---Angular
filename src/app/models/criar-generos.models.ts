@@ -1,4 +1,4 @@
 export interface Genero{
-    "id": number,
-    "genero_nome": String;
+    "id": number;
+    "generoNome": string;
 }

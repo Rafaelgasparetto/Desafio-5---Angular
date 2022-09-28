@@ -9,10 +9,10 @@ import { Genero } from '../models/criar-generos.models';
 export class SalvarGeneroService {
 
   private listaGeneros: any[]; // criando um array de lista de generos
-  private url = "http://localhost:3000/genero"; // para chamar o local de armazenamento do service
+  private url = "http://localhost:3000/generos"; // para chamar o local de armazenamento do service
 
-  constructor(private httpCliente: HttpClient) {
-    this.listaGeneros = [];
+  constructor(private httpClient: HttpClient) {
+    this.listaGeneros = []
   }
 
 
@@ -21,12 +21,22 @@ export class SalvarGeneroService {
   }
 
   lerGeneros(): Observable<Genero[]>{
-    return this.httpCliente.get<Genero[]>(this.url);
+    return this.httpClient.get<Genero[]>(this.url);
   }
 
+
   salvarGeneros(genero: Genero): Observable<Genero>{
-    return this.httpCliente.post<Genero>(this.url, genero);
+    return this.httpClient.post<Genero>(this.url, genero);
   }
+
+  excluirGeneros(idGenero: any){
+    return this.httpClient.delete(`${this.url}/${idGenero}`);
+  }
+
+
+  // salvarGeneros(genero: Genero): Observable<Genero>{
+  //   return this.httpClient.post<Genero>(this.url, genero);
+  // }
 
 
 
