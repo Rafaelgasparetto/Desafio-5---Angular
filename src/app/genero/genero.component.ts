@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Genero } from '../models/criar-generos.models';
 import { SalvarGeneroService } from '../services/salvar-genero.service';
+import { GeneroDialogComponent } from './generoDialog/genero-dialog/genero-dialog.component';
 
 @Component({
   selector: 'app-genero',
@@ -10,13 +12,16 @@ import { SalvarGeneroService } from '../services/salvar-genero.service';
 })
 export class GeneroComponent implements OnInit {
 
+
+  idGlobal: number = 0;
   formCadastrarGenero: FormGroup;
   error = "Este campo é obrigatorio"
   generos: Genero[];
 
   constructor(
     private formBuilder: FormBuilder,
-    private salvarGeneroService: SalvarGeneroService
+    private salvarGeneroService: SalvarGeneroService,
+    public dialog: MatDialog
     )
   { }
 
@@ -40,6 +45,37 @@ export class GeneroComponent implements OnInit {
 
   }
 
+  openDialog(id: number, enterAnimationDuration: string,
+  exitAnimationDuration: string): void {
+    this.salvarGeneroService.pegarId(id).subscribe({
+      next: (genero: Genero) =>{
+        const dialogRef = this.dialog.open(GeneroDialogComponent, {
+          width: '250px',
+          enterAnimationDuration,
+          exitAnimationDuration,
+          data: {id: genero.id, generoNome: genero.generoNome}
+        });
+      
+
+        dialogRef.afterClosed().subscribe(result => {
+          this.salvarGeneroService.editarGenero(result).subscribe({
+            next:() => {
+              this.ngOnInit();
+              
+            },
+            error:() => {
+              console.log("erro");
+            },
+          });
+        });
+      },
+      error:() =>{
+      console.log("erro");
+      },
+    });
+  }
+  
+
 
   salvarDadosGeneros(){
 
@@ -47,11 +83,11 @@ export class GeneroComponent implements OnInit {
 
     const genero = this.formCadastrarGenero.controls['genero'].value;
 
-    const tipoFilme: Genero = {id: id, generoNome: genero}
+    const tipoGenero: Genero = {id: id, generoNome: genero}
 
-    console.log(tipoFilme);
+    console.log(tipoGenero);
 
-    this.salvarGeneroService.salvarGeneros(tipoFilme).subscribe({
+    this.salvarGeneroService.salvarGeneros(tipoGenero).subscribe({
       next: () => {
         console.log("sucesso");
         this.ngOnInit();
@@ -75,10 +111,6 @@ export class GeneroComponent implements OnInit {
       }
     })
   }
-
-
-
-
 
 
 }

@@ -23,12 +23,6 @@
       "nome": "Teste3",
       "email": "rafa@gmil",
       "tel": "123"
-    },
-    {
-      "id": 5,
-      "nome": "Teste33",
-      "email": "rafa@gmilffff",
-      "tel": "123fffffffffff"
     }
   ],
   "generos": [
@@ -43,6 +37,10 @@
     {
       "id": 3,
       "generoNome": "Comédia"
+    },
+    {
+      "id": 4,
+      "generoNome": "Romance"
     }
   ],
   "filmes": [

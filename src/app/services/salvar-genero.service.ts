@@ -29,18 +29,17 @@ export class SalvarGeneroService {
     return this.httpClient.post<Genero>(this.url, genero);
   }
 
-  excluirGeneros(idGenero: any){
-    return this.httpClient.delete(`${this.url}/${idGenero}`);
+  excluirGeneros(id: any){
+    return this.httpClient.delete(`${this.url}/${id}`);
   }
 
+  editarGenero(genero: Genero){
+    return this.httpClient.put(`${this.url}/${genero.id}`, genero);
+  }
 
-  // salvarGeneros(genero: Genero): Observable<Genero>{
-  //   return this.httpClient.post<Genero>(this.url, genero);
-  // }
-
-
-
-
+  pegarId(id: number): Observable<Genero>{
+    return this.httpClient.get<Genero>(`${this.url}/${id}`);
+  }
 
 
 }

@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UsuarioDialogComponent } from './usuario/usuarioDialog/usuario-dialog/usuario-dialog.component';
+import { GeneroDialogComponent } from './genero/generoDialog/genero-dialog/genero-dialog.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { UsuarioDialogComponent } from './usuario/usuarioDialog/usuario-dialog/u
     UsuarioComponent,
     FilmesComponent,
     GeneroComponent,
-    UsuarioDialogComponent
+    UsuarioDialogComponent,
+    GeneroDialogComponent
   ],
   imports: [
     BrowserModule,
