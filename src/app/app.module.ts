@@ -21,6 +21,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UsuarioDialogComponent } from './usuario/usuarioDialog/usuario-dialog/usuario-dialog.component';
 import { GeneroDialogComponent } from './genero/generoDialog/genero-dialog/genero-dialog.component';
+import { FilmeDialogComponent } from './filmes/FilmeDialog/filme-dialog/filme-dialog.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { GeneroDialogComponent } from './genero/generoDialog/genero-dialog/gener
     FilmesComponent,
     GeneroComponent,
     UsuarioDialogComponent,
-    GeneroDialogComponent
+    GeneroDialogComponent,
+    FilmeDialogComponent
   ],
   imports: [
     BrowserModule,

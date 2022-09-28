@@ -24,7 +24,7 @@
                 <div>
 
                     <div class="card_genero">
-                        <div> <p> <b>Gênero: </b> {{genero.generoNome}} </p> </div>
+                        <div> <p> <span>Gênero: </span> {{genero.generoNome}} </p> </div>
                         <div> <button class="btn_editar_genero" (click)="openDialog(genero.id, '0ms', '0ms')" mat-raised-button>Editar</button> </div>
                         <div> <button class="btn_excluir_genero" mat-raised-button (click)="excluirGeneros(genero.id)" >Excluir</button> </div>
                     </div>

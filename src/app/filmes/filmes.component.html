@@ -11,15 +11,16 @@
             <h2>Cadastrar Filmes</h2>
             <form [formGroup]="formCadastrarFilmes" (ngSubmit)="SalvarDadosFilmes()">
                 <mat-form-field appearance="fill">
+                    <mat-label>Titulo</mat-label>
                     <input formControlName="titulo" name="titulo" matInput placeholder="Titulo do filme" required>
                     <mat-error>{{error}}</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                     <mat-label>Gênero</mat-label>
                     <mat-select formControlName="genero" name="genero" required>
-                    <mat-option value="0">Ação</mat-option>
-                    <mat-option value="1">Comédia</mat-option>
-                    <mat-option value="2">Terror</mat-option>
+                    <mat-option value="Ação">Ação</mat-option>
+                    <mat-option value="Comédia">Comédia</mat-option>
+                    <mat-option value="Terror">Terror</mat-option>
                     </mat-select>
                     <mat-error>{{error}}</mat-error>
                 </mat-form-field>
@@ -27,30 +28,21 @@
             </form>
         </div>
 
-        <div id="div_filmes_cadastrados">
+        <div id="div_filmes_cadastrados" *ngFor="let filme of filmes">
+
             <mat-card id="filmes_cadastrados">
-                <div class="card_cadastrados">
-                    <p>Os outros</p>
-                    <p>Terror</p>
-                    <button class="btn_editar_filmes" mat-raised-button>Editar</button>
-                    <button class="btn_excluir_filmes"  mat-raised-button>Excluir</button>            
-                </div>
 
                 <div class="card_cadastrados">
-                    <p>Até o ultimo homem</p>
-                    <p>Ação</p>
-                    <button class="btn_editar_filmes" mat-raised-button>Editar</button>
-                    <button class="btn_excluir_filmes" mat-raised-button>Excluir</button>            
+                    <div> <p> <span>Filme: </span>{{filme.filmeNome}}</p> </div>
+                    <div> <p> <span>Gênero: </span>{{filme.generoNome}}</p> </div>
+                    <button class="btn_editar_filmes" mat-raised-button (click)="openDialog(filme.id, '0ms', '0ms')" >Editar</button>
+                    <button class="btn_excluir_filmes"  mat-raised-button (click)="excluirFilme(filme.id)" >Excluir</button>            
                 </div>
 
-                <div class="card_cadastrados">
-                    <p>O máscara</p>
-                    <p>Comédia</p>
-                    <button class="btn_editar_filmes" mat-raised-button>Editar</button>
-                    <button class="btn_excluir_filmes" mat-raised-button>Excluir</button>            
-                </div>
             </mat-card>
+            
         </div>
+           
     </div>
 
 </section>

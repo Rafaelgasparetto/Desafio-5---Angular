@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Editar Filme: <b>{{data.filmeNome}}</b> </h1>
+<div mat-dialog-content>
+  <p>Coloque o titulo do filme:</p>
+
+    <form [formGroup]="form">
+        <mat-form-field appearance="fill">
+            <mat-label>Titulo</mat-label>
+            <input formControlName="fd_nome" name="titulo" matInput placeholder="Titulo do filme" required>
+            <mat-error>{{error}}</mat-error>
+        </mat-form-field>
+
+        <p>Selecione o gênero do filme:</p>
+        <mat-form-field appearance="fill">
+            <mat-label>Gênero</mat-label>
+            <mat-select formControlName="fd_genero" name="genero" required>
+            <mat-option value="Ação">Ação</mat-option>
+            <mat-option value="Comédia">Comédia</mat-option>
+            <mat-option value="Terror">Terror</mat-option>
+            </mat-select>
+            <mat-error>{{error}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="hide_id">
+            <mat-label>id</mat-label>
+            <input formControlName="fd_id" name="id" matInput >
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancelarEditarFilme()">Cancelar</button>
+  <button mat-button  cdkFocusInitial (click)="editarFilme()" [disabled]="!form.valid" >Editar</button>
+</div>
+
+<!-- [(ngModel)]="data.animal" -->
+
+<!-- [mat-dialog-close]="data.animal" -->
