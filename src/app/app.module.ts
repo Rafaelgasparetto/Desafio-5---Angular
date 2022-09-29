@@ -22,6 +22,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { UsuarioDialogComponent } from './usuario/usuarioDialog/usuario-dialog/usuario-dialog.component';
 import { GeneroDialogComponent } from './genero/generoDialog/genero-dialog/genero-dialog.component';
 import { FilmeDialogComponent } from './filmes/FilmeDialog/filme-dialog/filme-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { FilmeDialogComponent } from './filmes/FilmeDialog/filme-dialog/filme-di
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,12 +10,10 @@
         </mat-form-field>
 
         <p>Selecione o gênero do filme:</p>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" >
             <mat-label>Gênero</mat-label>
-            <mat-select formControlName="fd_genero" name="genero" required>
-            <mat-option value="Ação">Ação</mat-option>
-            <mat-option value="Comédia">Comédia</mat-option>
-            <mat-option value="Terror">Terror</mat-option>
+            <mat-select formControlName="genero" name="genero" required>
+            <mat-option *ngFor="let select of generos" [value]="select">{{select.generoNome}}</mat-option>
             </mat-select>
             <mat-error>{{error}}</mat-error>
         </mat-form-field>

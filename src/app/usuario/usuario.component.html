@@ -1,6 +1,7 @@
 
 <section>
-    <mat-card>
+
+    <div class="div_content">
         <mat-card-subtitle>Cadastro</mat-card-subtitle>
         <mat-card-content>
 
@@ -33,20 +34,27 @@
             <div id="div_cadastrados">
                 <mat-card id="mat_card_cadastrados" *ngFor="let usuarios of clientes">
 
-                    <div class="card_cadastrados" >
-                        <div class="card_inside">
-                            <div> <p> {{usuarios.nome}} </p> </div>
-                            <div> <p> {{usuarios.email}} </p> </div>
-                            <div> <p> {{usuarios.tel}} </p> </div>
-                            <div> <button class="btn_editar_usuario" mat-raised-button  (click)="openDialog(usuarios.id, '0ms', '0ms')" >Editar</button> </div>
-                            <div> <button class="btn_excluir_usuario" mat-raised-button (click)="excluirCliente(usuarios.id)" >Excluir</button> </div>
+                    <div class="card_inside">
+                        <div class="div_txt_card">
+                            <div class="text_align"> <p> {{usuarios.nome}} </p> </div>
+                            <div class="text_align"> <p> {{usuarios.email}} </p> </div>
+                            <div class="text_align"> <p> {{usuarios.tel}} </p> </div>
+                        </div>
+                        <div class="div_btns">
+                            <button class="btn_editar_usuario" mat-raised-button  (click)="openDialog(usuarios.id, '0ms', '0ms')" >Editar</button>
+                            <button class="btn_excluir_usuario" mat-raised-button (click)="excluirCliente(usuarios.id)" >Excluir</button>
                         </div>
                     </div>
 
                 </mat-card>
             </div>
+
         </mat-card-content>
 
-    </mat-card>
+    </div>
+
+    <div class="spinner" *ngIf="loading | async" >
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
 
 </section>

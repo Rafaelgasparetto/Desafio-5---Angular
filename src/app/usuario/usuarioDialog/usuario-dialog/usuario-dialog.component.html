@@ -1,48 +1,39 @@
 
-<div class="dialog_contain">
 
-    <h1 mat-dialog-title>Editar cadastro de: <br> {{data.nome}}</h1>
-    <div mat-dialog-content>
-    <p>Tela de Editar</p>
-        <form [formGroup]="form"  >
 
-            <mat-form-field appearance="fill">
-                <mat-label>Nome: </mat-label>
-                <input matInput formControlName="d_nome" name="d_nome" value="{{data.nome}}"  required>
-                <mat-error>{{error}}</mat-error>
-            </mat-form-field>
+<h1 mat-dialog-title>Editar cadastro de: <br> {{data.nome}}</h1>
+<div mat-dialog-content>
+<p>Tela de Editar</p>
+    <form [formGroup]="form"  >
 
-            <mat-form-field appearance="fill">
-                <mat-label>E-mail: </mat-label>
-                <input matInput formControlName="d_email" name="d_email"  value="{{data.email}}" required>
-                <mat-error *ngIf="form.get('d_email')?.hasError('required') || form.get('d_email')?.hasError('email')"> {{validaEmail()}} </mat-error>
-            </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Nome: </mat-label>
+            <input matInput formControlName="d_nome" name="d_nome" value="{{data.nome}}"  required>
+            <mat-error>{{error}}</mat-error>
+        </mat-form-field>
 
-            <mat-form-field appearance="fill">
-                <mat-label>Telefone</mat-label>
-                <input matInput formControlName="d_tel" name="d_tel"  value="{{data.tel}}"  required>
-                <mat-error>{{error}}</mat-error>
-            </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>E-mail: </mat-label>
+            <input matInput formControlName="d_email" name="d_email"  value="{{data.email}}" required>
+            <mat-error *ngIf="form.get('d_email')?.hasError('required') || form.get('d_email')?.hasError('email')"> {{validaEmail()}} </mat-error>
+        </mat-form-field>
 
-            <mat-form-field appearance="fill" id="hide_input">
-                <mat-label>ID</mat-label>
-                <input matInput formControlName="d_id" name="d_id"  value="{{data.id}}"  required>
-                <mat-error>{{error}}</mat-error>
-            </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Telefone</mat-label>
+            <input matInput formControlName="d_tel" name="d_tel"  value="{{data.tel}}"  required>
+            <mat-error>{{error}}</mat-error>
+        </mat-form-field>
 
-        </form>
+        <mat-form-field appearance="fill" id="hide_input">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="d_id" name="d_id"  value="{{data.id}}"  required>
+            <mat-error>{{error}}</mat-error>
+        </mat-form-field>
 
-    </div>
-    <div mat-dialog-actions>
-    <button mat-button (click)="cancelar()" class="btn_dialog_cancelar">Cancelar</button>
-    <button mat-button  cdkFocusInitial (click)="editarCliente()" class="btn_dialog_editar" [disabled]="!form.valid" >Editar</button>
-    </div>
+    </form>
 
 </div>
-<!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Editar</button> -->
-
-<!-- <input matInput [(ngModel)]="usuarios.nome"> -->
-
-<!-- [(ngModel)]="this.data.nome" -->
-<!-- [(ngModel)]="this.data.email" -->
-<!-- [(ngModel)]="this.data.tel" -->
+<div mat-dialog-actions>
+<button mat-button (click)="cancelar()" class="btn_dialog_cancelar">Cancelar</button>
+<button mat-button  cdkFocusInitial (click)="editarCliente()" class="btn_dialog_editar" [disabled]="!form.valid" >Editar</button>
+</div>

@@ -33,10 +33,14 @@
             <mat-card id="filmes_cadastrados">
 
                 <div class="card_cadastrados">
-                    <div> <p> {{filme.filmeNome}} </p> </div>
-                    <div> <p> {{filme.generoNome}} </p> </div>
-                    <button class="btn_editar_filmes" mat-raised-button (click)="openDialog(filme.id, '0ms', '0ms')" >Editar</button>
-                    <button class="btn_excluir_filmes"  mat-raised-button (click)="excluirFilme(filme.id)" >Excluir</button>            
+                    <div class="div_txt_card" >
+                        <div class="text_align"> <p> {{filme.filmeNome}} </p> </div>
+                        <div class="text_align"> <p> {{filme.generoNome}} </p> </div>
+                    </div>
+                    <div class="div_btns">
+                        <button class="btn_editar_filmes" mat-raised-button (click)="openDialog(filme.id, '0ms', '0ms')" >Editar</button>
+                        <button class="btn_excluir_filmes"  mat-raised-button (click)="excluirFilme(filme.id)" >Excluir</button> 
+                    </div>           
                 </div>
 
             </mat-card>

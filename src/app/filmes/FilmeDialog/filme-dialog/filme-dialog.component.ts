@@ -2,7 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Filme } from 'src/app/models/criar-filmes.models';
+import { Genero } from 'src/app/models/criar-generos.models';
 import { SalvarFilmeService } from 'src/app/services/salvar-filme.service';
+import { SalvarGeneroService } from 'src/app/services/salvar-genero.service';
 
 @Component({
   selector: 'app-filme-dialog',
@@ -14,11 +16,13 @@ export class FilmeDialogComponent implements OnInit {
   error = "Este campo é obrigatorio";
   form: FormGroup;
   filmes: Filme[];
+  generos: Genero[];
 
   constructor(
     public dialogRef: MatDialogRef<FilmeDialogComponent>,
     private formBuilder: FormBuilder,
     private salvarFilmeService : SalvarFilmeService,
+    private salvarGeneroService: SalvarGeneroService,
     @Inject(MAT_DIALOG_DATA) public data: Filme,
   ) { }
 

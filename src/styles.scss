@@ -65,4 +65,57 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: gray;
 }
 
+.div_txt_card{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
 
+.div_btns{
+  display: flex;
+  gap: 30px;
+}
+
+.text_align{
+  display: flex;
+  align-items: center;
+}
+
+.text_align p{
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+// mat-dialog-container#mat-dialog{ 
+//   border-radius: 20px;
+// }
+
+.snackbar-tema{
+  background-color: #5b05a7;
+  color: white;
+  // width: 300px;
+  height: 50px;
+  text-align: center;
+  justify-content: center;
+}
+
+
+
+.spinner{
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 998;
+  background-color: rgba($color: #000000, $alpha: 0.3);
+}
+
+// mudar a cor do spinner colocar em cada style de pagina
+// \/
+// :host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+//   stroke:#41B8D2 !important;
+// }

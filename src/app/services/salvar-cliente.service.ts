@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { usuario } from '../models/criar-usuarios.models';
 
 @Injectable({
@@ -8,12 +8,24 @@ import { usuario } from '../models/criar-usuarios.models';
 })
 export class SalvarClienteService {
 
+  // fazendo o progress spiner
+  private _loading = new BehaviorSubject<boolean>(false) 
+  public readonly loading = this._loading.asObservable();
+
   private listaClientes: any[]; // criando um array de lista de clientes
   private url ="http://localhost:3000/clientes"; // para chamar o local de armazenamento do service
 
 
   constructor(private httpClient: HttpClient) { 
     this.listaClientes = [] 
+  }
+
+  showLoading(){
+    this._loading.next(true);
+  }
+
+  hideLoading(){
+    this._loading.next(false);
   }
 
 
