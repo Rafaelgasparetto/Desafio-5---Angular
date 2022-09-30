@@ -1,12 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Genero } from '../models/criar-generos.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SalvarGeneroService {
+
+  // fazendo o progress spiner
+  private _loading = new BehaviorSubject<boolean>(false) 
+  public readonly loading = this._loading.asObservable();
 
   private listaGeneros: any[]; // criando um array de lista de generos
   private url = "http://localhost:3000/generos"; // para chamar o local de armazenamento do service
@@ -15,6 +19,13 @@ export class SalvarGeneroService {
     this.listaGeneros = []
   }
 
+  showLoading(){
+    this._loading.next(true);
+  }
+
+  hideLoading(){
+    this._loading.next(false);
+  }
 
   get generos(){
     return this.listaGeneros;

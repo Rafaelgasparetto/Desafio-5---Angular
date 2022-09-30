@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Filme } from '../models/criar-filmes.models';
 
 @Injectable({
@@ -8,6 +8,9 @@ import { Filme } from '../models/criar-filmes.models';
 })
 export class SalvarFilmeService {
 
+  // fazendo o progress spiner
+  private _loading = new BehaviorSubject<boolean>(false) 
+  public readonly loading = this._loading.asObservable();
 
   private listaFilmes: any[];
   private url = "http://localhost:3000/filmes";
@@ -18,6 +21,13 @@ export class SalvarFilmeService {
     this.listaFilmes = []
   }
 
+  showLoading(){
+    this._loading.next(true);
+  }
+
+  hideLoading(){
+    this._loading.next(false);
+  }
 
   get filmes(){
     return this.listaFilmes;

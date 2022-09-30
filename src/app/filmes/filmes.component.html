@@ -19,7 +19,7 @@
                 <mat-form-field appearance="fill" >
                     <mat-label>Gênero</mat-label>
                     <mat-select formControlName="genero" name="genero" required>
-                    <mat-option *ngFor="let select of generos" [value]="select">{{select.generoNome}}</mat-option>
+                    <mat-option *ngFor="let select of generos" value={{select.generoNome}}>{{select.generoNome}}</mat-option>
                     </mat-select>
                     <mat-error>{{error}}</mat-error>
                 </mat-form-field>
@@ -35,7 +35,7 @@
                 <div class="card_cadastrados">
                     <div class="div_txt_card" >
                         <div class="text_align"> <p> {{filme.filmeNome}} </p> </div>
-                        <div class="text_align"> <p> {{filme.generoNome}} </p> </div>
+                        <div class="text_align"> <p> {{filme.generoFilme}} </p> </div>
                     </div>
                     <div class="div_btns">
                         <button class="btn_editar_filmes" mat-raised-button (click)="openDialog(filme.id, '0ms', '0ms')" >Editar</button>
@@ -47,6 +47,10 @@
             
         </div>
            
+    </div>
+
+    <div class="spinner" *ngIf="loading | async" >
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
     </div>
 
 </section>

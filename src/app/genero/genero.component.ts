@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Genero } from '../models/criar-generos.models';
 import { SalvarGeneroService } from '../services/salvar-genero.service';
 import { GeneroDialogComponent } from './generoDialog/genero-dialog/genero-dialog.component';
@@ -17,11 +18,13 @@ export class GeneroComponent implements OnInit {
   formCadastrarGenero: FormGroup;
   error = "Este campo é obrigatorio"
   generos: Genero[];
+  loading = this.salvarGeneroService.loading;
 
   constructor(
     private formBuilder: FormBuilder,
     private salvarGeneroService: SalvarGeneroService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
     )
   { }
 
@@ -39,7 +42,7 @@ export class GeneroComponent implements OnInit {
       
     },
     error: () => {
-      console.log("erro ao ler Generos");
+      this.alertaDados("erro_bancoDados");
     }
    })
 
@@ -47,8 +50,10 @@ export class GeneroComponent implements OnInit {
 
   openDialog(id: number, enterAnimationDuration: string,
   exitAnimationDuration: string): void {
+    this.salvarGeneroService.showLoading();
     this.salvarGeneroService.pegarId(id).subscribe({
       next: (genero: Genero) =>{
+        this.salvarGeneroService.hideLoading();
         const dialogRef = this.dialog.open(GeneroDialogComponent, {
           width: '250px',
           enterAnimationDuration,
@@ -58,19 +63,25 @@ export class GeneroComponent implements OnInit {
       
 
         dialogRef.afterClosed().subscribe(result => {
-          this.salvarGeneroService.editarGenero(result).subscribe({
-            next:() => {
-              this.ngOnInit();
-              
-            },
-            error:() => {
-              console.log("erro");
-            },
-          });
+          if(result){
+            this.salvarGeneroService.editarGenero(result).subscribe({
+              next:() => {
+                this.ngOnInit();
+                this.salvarGeneroService.hideLoading();
+                this.alertaDados("sucesso_editar");
+                
+              },
+              error:() => {
+                this.salvarGeneroService.hideLoading();
+                this.alertaDados("falha_editar");
+              },
+            });
+          }
         });
       },
       error:() =>{
-      console.log("erro");
+      this.salvarGeneroService.hideLoading();
+      this.alertaDados("erro_generico");
       },
     });
   }
@@ -78,6 +89,8 @@ export class GeneroComponent implements OnInit {
 
 
   salvarDadosGeneros(){
+
+    this.salvarGeneroService.showLoading();
 
     const id = this.generos[this.generos.length - 1].id +1;
 
@@ -89,27 +102,111 @@ export class GeneroComponent implements OnInit {
 
     this.salvarGeneroService.salvarGeneros(tipoGenero).subscribe({
       next: () => {
-        console.log("sucesso");
+        // console.log("sucesso");
         this.ngOnInit();
+        this.salvarGeneroService.hideLoading();
+        this.alertaDados("sucesso_cadastrar");
       },
       error: () => {
-        console.log("erro");
+        // console.log("erro");
+        this.salvarGeneroService.hideLoading();
+        this.alertaDados("falha_cadastrar");
       }
     })
   }
 
 
   excluirGeneros(id: any){
+    this.salvarGeneroService.showLoading();
     this.salvarGeneroService.excluirGeneros(id).subscribe({
       next: () => {
-        console.log("Deletado");
+        // console.log("Deletado");
         this.ngOnInit();
+        this.salvarGeneroService.hideLoading();
+        this.alertaDados("sucesso_excluir")
       },
       error: () =>{
-        console.log("erro no delete");
+        this.salvarGeneroService.hideLoading();
+        // console.log("erro no delete");
+        this.alertaDados("falha_excluir");
         
       }
     })
+  }
+
+
+  alertaDados(tipoExecucao: String){
+
+    switch (tipoExecucao) {
+      case "sucesso_cadastrar":
+        this.snackBar.open("Cadastrado com sucesso", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema']
+        })
+      break;
+
+        case "sucesso_editar":
+          this.snackBar.open("Editado com sucesso", undefined, {
+            duration: 2000,
+            panelClass: ['snackbar-tema']
+          })
+        break;
+
+          case "sucesso_excluir":
+            this.snackBar.open("Excluido com sucesso", undefined, {
+              duration: 2000,
+              panelClass: ['snackbar-tema']
+            })
+          break;
+
+          case "falha_cadastrar":
+            this.snackBar.open("Desculpe, erro ao cadastrar", undefined, {
+              duration: 2000,
+              panelClass: ['snackbar-tema']
+            })
+          break;
+
+          case "falha_editar":
+            this.snackBar.open("Desculpe, erro ao editar", undefined, {
+              duration: 2000,
+              panelClass: ['snackbar-tema']
+            })
+          break;
+
+          case "falha_excluir":
+            this.snackBar.open("Desculpe, erro ao excluir", undefined, {
+              duration: 2000,
+              panelClass: ['snackbar-tema']
+            })
+          break;
+
+          case "erro_bancoDados":
+            this.snackBar.open("Serviço indisponivel no momento, erro 500 (leitura no banco)", undefined, {
+              panelClass: ['snackbar-tema']
+            })
+          break;
+
+          case "erro_generico":
+            this.snackBar.open("Erro :(", undefined, {
+              duration: 20000,
+              panelClass: ['snackbar-tema']
+            })
+          break;
+
+          case "erro_select":
+            this.snackBar.open("erro ao ler Generos no select", undefined, {
+              duration: 20000,
+              panelClass: ['snackbar-tema']
+            })
+          break;
+    
+      default:
+        this.snackBar.open("Serviço indisponivel no momento, tente novamente mais tarde", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema']
+        })
+        break;
+    }
   }
 
 

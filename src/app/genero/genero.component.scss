@@ -40,6 +40,7 @@ section{
     justify-content:space-between;
     border: gray;
     font-size: 15px;
+    margin-bottom: 5%;
 }
 
 mat-form-field{
@@ -77,6 +78,10 @@ mat-card{
 ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
     background-color: #4abbd4 !important;
 
+}
+
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    stroke:#FFCA45 !important;
 }
 
 #btn_salvar_generos{

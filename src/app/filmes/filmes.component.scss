@@ -105,6 +105,10 @@ mat-card{
 
 }
 
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    stroke:#FFCA45 !important;
+}
+
 #div_filmes_cadastrados{
     display: flex;
     width: 100%;

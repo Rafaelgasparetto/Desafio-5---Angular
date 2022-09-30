@@ -34,8 +34,23 @@ export class FilmeDialogComponent implements OnInit {
     })
 
     this.form.controls['fd_nome'].setValue(this.data.filmeNome);
-    this.form.controls['fd_genero'].setValue(this.data.generoNome);
+    this.form.controls['fd_genero'].setValue(this.data.generoFilme);
     this.form.controls['fd_id'].setValue(this.data.id);
+
+
+    this.salvarGeneroService.lerGeneros().subscribe({
+      next: (generos: Genero[]) => {
+        this.generos = generos;
+  
+        console.log(this.generos);
+        
+      },
+      error: () => {
+        console.log("erro ao ler Generos no select");
+      }
+     })
+
+
 
   }
 
@@ -46,7 +61,7 @@ export class FilmeDialogComponent implements OnInit {
 
       id: this.form.controls['fd_id'].value,
       filmeNome: this.form.controls['fd_nome'].value,
-      generoNome: this.form.controls['fd_genero'].value
+      generoFilme: this.form.controls['fd_genero'].value
 
     }
 
@@ -54,13 +69,11 @@ export class FilmeDialogComponent implements OnInit {
 
     this.data.id = this.form.controls['fd_id'].value,
     this.data.filmeNome = this.form.controls['fd_nome'].value,
-    this.data.generoNome = this.form.controls['fd_genero'].value,
+    this.data.generoFilme = this.form.controls['fd_genero'].value,
     
     this.dialogRef.close(this.data);
 
   }
-
-
 
 
   cancelarEditarFilme(): void {

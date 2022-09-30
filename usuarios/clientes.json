@@ -17,18 +17,6 @@
       "nome": "Laura Porter",
       "email": "Laura@email.com",
       "tel": "1133496788"
-    },
-    {
-      "id": 6,
-      "nome": "Rafael Gasparetto",
-      "email": "rflk.89@gmail.com",
-      "tel": "11964649926"
-    },
-    {
-      "id": 7,
-      "nome": "Bolo de Limão",
-      "email": "teste@teste3",
-      "tel": "123"
     }
   ],
   "generos": [
@@ -46,44 +34,24 @@
     },
     {
       "id": 4,
-      "generoNome": "Romance"
-    },
-    {
-      "id": 5,
-      "generoNome": "oi"
+      "generoNome": "Drama"
     }
   ],
   "filmes": [
     {
       "id": 1,
       "filmeNome": "Os outros",
-      "generoNome": "Terror"
+      "generoFilme": "Terror"
     },
     {
       "id": 2,
       "filmeNome": "Até o ultimo homem",
-      "generoNome": "Ação"
+      "generoFilme": "Ação"
     },
     {
       "id": 3,
       "filmeNome": "O máscara",
-      "generoNome": "Comédia"
-    },
-    {
-      "id": 4,
-      "filmeNome": "Rafael Gasparetto",
-      "generoNome": {
-        "id": 5,
-        "generoNome": "oi"
-      }
-    },
-    {
-      "id": 5,
-      "filmeNome": "dfdf",
-      "generoNome": {
-        "id": 2,
-        "generoNome": "Ação"
-      }
+      "generoFilme": "Comédia"
     }
   ]
 }

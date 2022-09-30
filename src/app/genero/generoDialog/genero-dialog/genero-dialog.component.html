@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Editar Genero: <br> {{data.generoNome}}</h1>
+<h1 mat-dialog-title>Editar Genero: <br> <span>{{data.generoNome}}</span> </h1>
 <div mat-dialog-content>
   <p>Digite o nome do novo genero</p>
     <form [formGroup]="form" >
@@ -16,11 +16,6 @@
     </form>    
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="cancelarDialog()">Cancelar</button>
-  <button mat-button  cdkFocusInitial (click)="editarGenero()"  [disabled]="!form.valid">Editar</button>
+  <button mat-button (click)="cancelarDialog()" class="btn_dialog_cancelar" >Cancelar</button>
+  <button mat-button  cdkFocusInitial (click)="editarGenero()" class="btn_dialog_editar" [disabled]="!form.valid">Editar</button>
 </div>
-
-
-<!-- <input matInput [(ngModel)]="data.animal"> -->
-
-<!-- [mat-dialog-close]="data.animal" estava dentro do bottao editar -->

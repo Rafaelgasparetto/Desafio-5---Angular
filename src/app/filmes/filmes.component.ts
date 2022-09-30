@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Filme } from '../models/criar-filmes.models';
 import { Genero } from '../models/criar-generos.models';
 import { SalvarFilmeService } from '../services/salvar-filme.service';
@@ -19,12 +20,14 @@ export class FilmesComponent implements OnInit {
   error = "Este campo é obrigatorio"
   filmes: Filme[];
   generos: Genero[];
+  loading = this.salvarFilmeService.loading;
 
   constructor(
     private formBuilder: FormBuilder,
     private salvarFilmeService: SalvarFilmeService,
     public dialog: MatDialog,
     private salvarGeneroService: SalvarGeneroService,
+    private snackBar: MatSnackBar,
     ) { }
 
   ngOnInit(): void {
@@ -42,7 +45,7 @@ export class FilmesComponent implements OnInit {
         
       },
       error: () =>{
-        console.log("Erro para ler o filme");
+        this.alertaDados("erro_bancoDados");
       }
     })
 
@@ -54,7 +57,7 @@ export class FilmesComponent implements OnInit {
         
       },
       error: () => {
-        console.log("erro ao ler Generos no select");
+        this.alertaDados("erro_select");
       }
      })
 
@@ -64,33 +67,40 @@ export class FilmesComponent implements OnInit {
 
   SalvarDadosFilmes(){
     
+    this.salvarFilmeService.showLoading();
+
     const id = this.filmes[this.filmes.length - 1].id +1;
     const filme = this.formCadastrarFilmes.controls['titulo'].value;
     const genero = this.formCadastrarFilmes.controls['genero'].value;
 
-    const tipoFilme: Filme = {id: id, filmeNome: filme, generoNome: genero}
+    const tipoFilme: Filme = {id: id, filmeNome: filme, generoFilme: genero}
     
     console.log(tipoFilme);
     
     this.salvarFilmeService.salvarFilmes(tipoFilme).subscribe({
       next: () => {
-        console.log("Filme Salvo");
         this.ngOnInit();
+        this.salvarFilmeService.hideLoading();
+        this.alertaDados("sucesso_cadastrar");
       },
       error: () => {
-        console.log("erro ao salvar filme");
+        this.salvarFilmeService.hideLoading();
+        this.alertaDados("falha_cadastrar");
       }
     })
   }
 
   excluirFilme(id: any){
+    this.salvarFilmeService.showLoading();
     this.salvarFilmeService.excluirFilmes(id).subscribe({
       next: () => {
-        console.log("Filme deletado");
         this.ngOnInit();
+        this.salvarFilmeService.hideLoading();
+        this.alertaDados("sucesso_excluir")
       },
       error: () => {
-        console.log("erro ao deletar Filme");
+        this.salvarFilmeService.hideLoading();
+        this.alertaDados("falha_excluir");
       }
     })
 
@@ -99,36 +109,117 @@ export class FilmesComponent implements OnInit {
 
   openDialog(id: number, enterAnimationDuration: string,
     exitAnimationDuration: string): void {
+      this.salvarFilmeService.showLoading();
       this.salvarFilmeService.pegarId(id).subscribe({
         next: (filme: Filme) =>{
+          this.salvarFilmeService.hideLoading();
           const dialogRef = this.dialog.open(FilmeDialogComponent, {
             width: '250px',
             enterAnimationDuration,
             exitAnimationDuration,
-            data: {id: filme.id, filmeNome: filme.filmeNome, generoNome: filme.generoNome}
+            data: {id: filme.id, filmeNome: filme.filmeNome, generoFilme: filme.generoFilme}
           });
         
   
           dialogRef.afterClosed().subscribe(result => {
-            this.salvarFilmeService.editarFilmes(result).subscribe({
-              next:() => {
+            if(result){
+              this.salvarFilmeService.editarFilmes(result).subscribe({
+                next:() => {
+                  this.ngOnInit();
+                  this.salvarFilmeService.hideLoading();
+                  this.alertaDados("sucesso_editar");
+                  
+                },
+                error:() => {
+                  this.salvarFilmeService.hideLoading();
+                  this.alertaDados("falha_editar");
+                },
+              });
+            }
 
-                this.ngOnInit();
-                
-              },
-              error:() => {
-                console.log("erro");
-              },
-            });
           });
         },
         error:() =>{
-        console.log("erro");
+        this.salvarFilmeService.hideLoading();
+        this.alertaDados("erro_generico");
         },
       });
     }
 
+    alertaDados(tipoExecucao: String){
 
+      switch (tipoExecucao) {
+        case "sucesso_cadastrar":
+          this.snackBar.open("Cadastrado com sucesso", undefined, {
+            duration: 2000,
+            panelClass: ['snackbar-tema']
+          })
+        break;
+  
+          case "sucesso_editar":
+            this.snackBar.open("Editado com sucesso", undefined, {
+              duration: 2000,
+              panelClass: ['snackbar-tema']
+            })
+          break;
+  
+            case "sucesso_excluir":
+              this.snackBar.open("Excluido com sucesso", undefined, {
+                duration: 2000,
+                panelClass: ['snackbar-tema']
+              })
+            break;
+  
+            case "falha_cadastrar":
+              this.snackBar.open("Desculpe, erro ao cadastrar", undefined, {
+                duration: 2000,
+                panelClass: ['snackbar-tema']
+              })
+            break;
+  
+            case "falha_editar":
+              this.snackBar.open("Desculpe, erro ao editar", undefined, {
+                duration: 2000,
+                panelClass: ['snackbar-tema']
+              })
+            break;
+  
+            case "falha_excluir":
+              this.snackBar.open("Desculpe, erro ao excluir", undefined, {
+                duration: 2000,
+                panelClass: ['snackbar-tema']
+              })
+            break;
+  
+            case "erro_bancoDados":
+              this.snackBar.open("Serviço indisponivel no momento, erro 500 (leitura no banco)", undefined, {
+                panelClass: ['snackbar-tema']
+              })
+            break;
+  
+            case "erro_generico":
+              this.snackBar.open("Erro :(", undefined, {
+                duration: 20000,
+                panelClass: ['snackbar-tema']
+              })
+            break;
+
+            case "erro_select":
+              this.snackBar.open("erro ao ler Generos no select", undefined, {
+                duration: 20000,
+                panelClass: ['snackbar-tema']
+              })
+            break;
+      
+        default:
+          this.snackBar.open("Serviço indisponivel no momento, tente novamente mais tarde", undefined, {
+            duration: 2000,
+            panelClass: ['snackbar-tema']
+          })
+          break;
+      }
+  
+    }
 
 
 

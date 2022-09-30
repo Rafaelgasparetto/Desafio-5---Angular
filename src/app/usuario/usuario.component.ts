@@ -66,18 +66,20 @@ export class UsuarioComponent implements OnInit {
         
 
         dialogRef.afterClosed().subscribe(usuario2 => {
-          this.salvarClientesService.editarCliente(usuario2).subscribe({
-            next:() => {
-              this.ngOnInit();
-              this.salvarClientesService.hideLoading();
-              this.alertaDados("sucesso_editar");
-            },
-            error:() => {
-              this.salvarClientesService.hideLoading();
-              this.alertaDados("falha_editar");
-        },
-          });
-          
+          if(usuario2){
+            this.salvarClientesService.editarCliente(usuario2).subscribe({
+              next:() => {
+                this.ngOnInit();
+                this.salvarClientesService.hideLoading();
+                this.alertaDados("sucesso_editar");
+              },
+              error:() => {
+                this.salvarClientesService.hideLoading();
+                this.alertaDados("falha_editar");
+              },
+            });
+          }
+
         });
         
       },
