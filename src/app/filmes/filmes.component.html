@@ -19,7 +19,7 @@
                 <mat-form-field appearance="fill" >
                     <mat-label>Gênero</mat-label>
                     <mat-select formControlName="genero" name="genero" required>
-                    <mat-option *ngFor="let select of generos" value={{select.generoNome}}>{{select.generoNome}}</mat-option>
+                    <mat-option *ngFor="let select of generos" value={{select.generoNome}}>  {{select.generoNome}} </mat-option>
                     </mat-select>
                     <mat-error>{{error}}</mat-error>
                 </mat-form-field>

@@ -15,10 +15,10 @@ export class GeneroComponent implements OnInit {
 
 
   idGlobal: number = 0;
-  formCadastrarGenero: FormGroup;
-  error = "Este campo é obrigatorio"
-  generos: Genero[];
-  loading = this.salvarGeneroService.loading;
+  formCadastrarGenero: FormGroup; // para agrupar elementos
+  error = "Este campo é obrigatorio" //mensagem de erro automatica para os inputs da pagina
+  generos: Genero[]; // usando a interface de genero
+  loading = this.salvarGeneroService.loading; //atribuindo o spinner a variavel loading
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,49 +30,47 @@ export class GeneroComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.formCadastrarGenero = this.formBuilder.group({
-      genero: new FormControl('', [Validators.required])
+    this.formCadastrarGenero = this.formBuilder.group({ // defenindo elementos / validações e formando um grupo
+      genero: new FormControl('', [Validators.required]) 
     })
 
    this.salvarGeneroService.lerGeneros().subscribe({
     next: (generos: Genero[]) => {
-      this.generos = generos;
-
-      console.log(this.generos);
-      
+      this.generos = generos; // ler generos quando a tela for inicializada
+      console.log(this.generos); // demostração no log
     },
     error: () => {
-      this.alertaDados("erro_bancoDados");
+      this.alertaDados("erro_bancoDados"); // chamando a função alerta dados para a snackbar e passando o erro de BD caso não tiver leitura
     }
    })
 
   }
 
+  // ------------------------------ Função para abrir o Dialog -----------------------------
+
   openDialog(id: number, enterAnimationDuration: string,
   exitAnimationDuration: string): void {
-    this.salvarGeneroService.showLoading();
-    this.salvarGeneroService.pegarId(id).subscribe({
+    this.salvarGeneroService.showLoading(); //ativar Spinner
+    this.salvarGeneroService.pegarId(id).subscribe({ // pegar o id para o Dialog
       next: (genero: Genero) =>{
-        this.salvarGeneroService.hideLoading();
+        this.salvarGeneroService.hideLoading(); // desativar Spinner
         const dialogRef = this.dialog.open(GeneroDialogComponent, {
           width: '250px',
           enterAnimationDuration,
           exitAnimationDuration,
-          data: {id: genero.id, generoNome: genero.generoNome}
+          data: {id: genero.id, generoNome: genero.generoNome} // data para levar para o Dialog
         });
       
-
-        dialogRef.afterClosed().subscribe(result => {
+        dialogRef.afterClosed().subscribe(result => { // depois que fecha o Dialog vai editar o Genero
           if(result){
-            this.salvarGeneroService.editarGenero(result).subscribe({
+            this.salvarGeneroService.editarGenero(result).subscribe({ // edita o genero
               next:() => {
-                this.ngOnInit();
-                this.salvarGeneroService.hideLoading();
+                this.ngOnInit(); //chamar ngonit para atualização da pagina quando editar
+                this.salvarGeneroService.hideLoading(); //desativando o spinner
                 this.alertaDados("sucesso_editar");
-                
               },
               error:() => {
-                this.salvarGeneroService.hideLoading();
+                this.salvarGeneroService.hideLoading(); //desativando o spinner
                 this.alertaDados("falha_editar");
               },
             });
@@ -80,48 +78,45 @@ export class GeneroComponent implements OnInit {
         });
       },
       error:() =>{
-      this.salvarGeneroService.hideLoading();
+      this.salvarGeneroService.hideLoading(); //desativando o spinner
       this.alertaDados("erro_generico");
       },
     });
   }
   
 
+  //---------------------------- Função de salvar Genero ---------------------------
 
   salvarDadosGeneros(){
 
-    this.salvarGeneroService.showLoading();
+    this.salvarGeneroService.showLoading(); // chamando o Spinner
 
-    const id = this.generos[this.generos.length - 1].id +1;
+    const id = this.generos[this.generos.length - 1].id +1; //adicionando +1 id no ultimo id do genero
+    const genero = this.formCadastrarGenero.controls['genero'].value; // atribuir os valores do input nas variaveis
+    const tipoGenero: Genero = {id: id, generoNome: genero} // fazendo um objeto com as informaçoes do input
 
-    const genero = this.formCadastrarGenero.controls['genero'].value;
+    console.log(tipoGenero); // demostração no Log
 
-    const tipoGenero: Genero = {id: id, generoNome: genero}
-
-    console.log(tipoGenero);
-
-    this.salvarGeneroService.salvarGeneros(tipoGenero).subscribe({
+    this.salvarGeneroService.salvarGeneros(tipoGenero).subscribe({ //salvando filme
       next: () => {
-        // console.log("sucesso");
-        this.ngOnInit();
-        this.salvarGeneroService.hideLoading();
-        this.alertaDados("sucesso_cadastrar");
+        this.ngOnInit(); //chamar ngonit para atualização da pagina quando cadastrar
+        this.salvarGeneroService.hideLoading(); //desativando o spinner
+        this.alertaDados("sucesso_cadastrar"); //SnackBar de sucesso
       },
       error: () => {
-        // console.log("erro");
-        this.salvarGeneroService.hideLoading();
-        this.alertaDados("falha_cadastrar");
+        this.salvarGeneroService.hideLoading(); //desativando o spinner
+        this.alertaDados("falha_cadastrar"); //SnackBar de Falha
       }
     })
   }
 
+  //-------------------------------- Função de Excluir Genero ------------------------------
 
   excluirGeneros(id: any){
     this.salvarGeneroService.showLoading();
     this.salvarGeneroService.excluirGeneros(id).subscribe({
       next: () => {
-        // console.log("Deletado");
-        this.ngOnInit();
+        this.ngOnInit(); //chamar ngonit para atualização da pagina quando Excluir
         this.salvarGeneroService.hideLoading();
         this.alertaDados("sucesso_excluir")
       },
@@ -134,6 +129,7 @@ export class GeneroComponent implements OnInit {
     })
   }
 
+  //----------------------------------------- função para tratamento de erro SnackBar -------------------------------
 
   alertaDados(tipoExecucao: String){
 

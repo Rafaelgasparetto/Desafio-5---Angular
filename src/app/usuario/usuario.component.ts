@@ -17,9 +17,9 @@ export class UsuarioComponent implements OnInit {
 
   idGlobal: number = 0;
   formCadastrarUsuario: FormGroup; // para agrupar elementos
-  error = "Este campo é obrigatorio"
-  clientes: usuario[];
-  loading = this.salvarClientesService.loading;
+  error = "Este campo é obrigatorio" //mensagem de erro automatica para os inputs da pagina
+  clientes: usuario[]; // usando a interface Usuario
+  loading = this.salvarClientesService.loading; //atribuindo o spinner a variavel loading
   
   
 
@@ -32,7 +32,7 @@ export class UsuarioComponent implements OnInit {
   {  }
 
   ngOnInit(): void {
-    this.formCadastrarUsuario = this.formBuilder.group({ // defenindo elementos
+    this.formCadastrarUsuario = this.formBuilder.group({ // defenindo elementos / validações e formando um grupo
       nome: new FormControl('', [Validators.required]),
       email: new FormControl('',  [Validators.required, Validators.email]), //Validando os Inputs
       tel: new FormControl('',  [Validators.required]), 
@@ -40,42 +40,42 @@ export class UsuarioComponent implements OnInit {
     
     this.salvarClientesService.lerClientes().subscribe({
       next: (clientes: usuario[]) => {
-        this.clientes = clientes;
+        this.clientes = clientes; // ler Clientes quando a tela for inicializada
       },
       error: () => {
-        this.alertaDados("erro_bancoDados");
+        this.alertaDados("erro_bancoDados");  // chamando a função alerta dados para a snackbar e passando o erro de BD caso não tiver leitura
       }
     })
 
   }
 
 
+  // ------------------------------ Função para abrir o Dialog -----------------------------
 
   openDialog(id: number, enterAnimationDuration: string,
     exitAnimationDuration: string): void {
-      this.salvarClientesService.showLoading();
-      this.salvarClientesService.pegarId(id).subscribe({
+      this.salvarClientesService.showLoading(); //ativar Spinner
+      this.salvarClientesService.pegarId(id).subscribe({ // pegar o id para o Dialog
         next: (usuario: usuario) =>{
-          this.salvarClientesService.hideLoading();
+          this.salvarClientesService.hideLoading(); // desativar Spinner
           const dialogRef = this.dialog.open(UsuarioDialogComponent, {
             width: '250px',
             enterAnimationDuration,
             exitAnimationDuration,
-            data: {id: usuario.id, nome: usuario.nome, email: usuario.email, tel: usuario.tel}
+            data: {id: usuario.id, nome: usuario.nome, email: usuario.email, tel: usuario.tel} // data para levar para o Dialog
           });
         
-
-        dialogRef.afterClosed().subscribe(usuario2 => {
+        dialogRef.afterClosed().subscribe(usuario2 => { // depois que fecha o Dialog edita o Cliente
           if(usuario2){
-            this.salvarClientesService.editarCliente(usuario2).subscribe({
+            this.salvarClientesService.editarCliente(usuario2).subscribe({ // edita o cliente
               next:() => {
-                this.ngOnInit();
+                this.ngOnInit(); //chamar ngonit para atualização da pagina quando editar
                 this.salvarClientesService.hideLoading();
-                this.alertaDados("sucesso_editar");
+                this.alertaDados("sucesso_editar"); // chamando a função alerta dados para a snackbar e passando o erro
               },
               error:() => {
                 this.salvarClientesService.hideLoading();
-                this.alertaDados("falha_editar");
+                this.alertaDados("falha_editar"); // chamando a função alerta dados para a snackbar e passando o erro
               },
             });
           }
@@ -84,15 +84,14 @@ export class UsuarioComponent implements OnInit {
         
       },
       error:() =>{
-        this.salvarClientesService.hideLoading();
-        this.alertaDados("erro_generico");
+        this.salvarClientesService.hideLoading(); 
+        this.alertaDados("erro_generico"); // chamando a função alerta dados para a snackbar e passando o erro
          
       },
       
-    });}
+  });}
 
-
-    
+  //----------------------------- Função para Validação do e-mail --------------------
 
   validaEmail(): String{
     
@@ -102,10 +101,12 @@ export class UsuarioComponent implements OnInit {
     return this.formCadastrarUsuario.controls["email"].hasError('email') ? "E-mail inválido" : '';
   }
 
+  //----------------------------- Função para Validação do telefone --------------------
   confirmarTelefone(): String{ 
     return this.error // falta implementar com minimo lenght e max lenght (vai ficar para um update do projeto)
   }
 
+  //---------------------------- Função de salvar Cliente ---------------------------
 
   SalvarDadosUsuario(){
 
@@ -133,6 +134,8 @@ export class UsuarioComponent implements OnInit {
 
   }
 
+  //-------------------------------- Função de Excluir Cliente ------------------------------
+
   excluirCliente(id: any){
     this.salvarClientesService.showLoading();
     this.salvarClientesService.excluirCliente(id).subscribe({
@@ -149,7 +152,8 @@ export class UsuarioComponent implements OnInit {
     })
   }
 
-  //Função para snackbar e feedback para o usuario
+  //----------------------------------------- função para tratamento de erro SnackBar -------------------------------
+
   alertaDados(tipoExecucao: String){
 
     switch (tipoExecucao) {
@@ -218,8 +222,5 @@ export class UsuarioComponent implements OnInit {
     }
 
   }
-
-
-
 
 }

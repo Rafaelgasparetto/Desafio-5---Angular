@@ -16,8 +16,11 @@ export class SalvarGeneroService {
   private url = "http://localhost:3000/generos"; // para chamar o local de armazenamento do service
 
   constructor(private httpClient: HttpClient) {
-    this.listaGeneros = []
+    this.listaGeneros = [] // lista de Genero
   }
+
+
+  //----------------------Funçoes do Spinner----------------------
 
   showLoading(){
     this._loading.next(true);
@@ -27,26 +30,37 @@ export class SalvarGeneroService {
     this._loading.next(false);
   }
 
+  //----------------Função para pegar Genero---------------------
+
   get generos(){
     return this.listaGeneros;
   }
+
+  //----------------Função para ler Genero---------------------
 
   lerGeneros(): Observable<Genero[]>{
     return this.httpClient.get<Genero[]>(this.url);
   }
 
+  //----------------Função para Salvar Genero---------------------
 
   salvarGeneros(genero: Genero): Observable<Genero>{
     return this.httpClient.post<Genero>(this.url, genero);
   }
 
+  //----------------Função para excluir Genero---------------------  
+
   excluirGeneros(id: any){
     return this.httpClient.delete(`${this.url}/${id}`);
   }
 
+  //----------------Função para editar Genero---------------------
+
   editarGenero(genero: Genero){
     return this.httpClient.put(`${this.url}/${genero.id}`, genero);
   }
+
+  //-----------------Função para pegar o id do Genero----------------------
 
   pegarId(id: number): Observable<Genero>{
     return this.httpClient.get<Genero>(`${this.url}/${id}`);

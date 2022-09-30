@@ -13,13 +13,13 @@ import { SalvarGeneroService } from 'src/app/services/salvar-genero.service';
 })
 export class FilmeDialogComponent implements OnInit {
 
-  error = "Este campo é obrigatorio";
-  form: FormGroup;
-  filmes: Filme[];
-  generos: Genero[];
+  error = "Este campo é obrigatorio"; //mensagem de erro automatica para os inputs da pagina
+  form: FormGroup; // para agrupar elementos
+  filmes: Filme[]; // usando a interface de filmes
+  generos: Genero[]; // usando a interface de genero
 
   constructor(
-    public dialogRef: MatDialogRef<FilmeDialogComponent>,
+    public dialogRef: MatDialogRef<FilmeDialogComponent>, 
     private formBuilder: FormBuilder,
     private salvarFilmeService : SalvarFilmeService,
     private salvarGeneroService: SalvarGeneroService,
