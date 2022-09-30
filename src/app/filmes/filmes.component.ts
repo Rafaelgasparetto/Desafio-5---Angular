@@ -61,13 +61,34 @@ export class FilmesComponent implements OnInit {
 
   }
 
+  nextId(){
+    console.log(this.filmes.length);
+    let maiorId = 0;
+    // let maiorId: number = this.clientes[(this.clientes.length) - 1].id
+    for (let i = 0; i < this.filmes.length; i++) {
+      this.filmes[i].id
+      if(this.filmes.length > 0){
+        maiorId = this.filmes[i].id
+      }
+      
+    }
+    maiorId++;
+    console.log(maiorId);
+
+    return maiorId;
+  }
+
+
+
+
   //---------------------------- Função de salvar filmes ---------------------------
 
   SalvarDadosFilmes(){
     
     this.salvarFilmeService.showLoading(); // chamando o Spinner
 
-    const id = this.filmes[this.filmes.length - 1].id +1; //adicionando +1 id no ultimo id do filmes
+    const id = this.nextId();
+    // const id = this.filmes[this.filmes.length - 1].id +1; //adicionando +1 id no ultimo id do filmes
     const filme = this.formCadastrarFilmes.controls['titulo'].value;  // atribuir os valores do input nas variaveis
     const genero = this.formCadastrarFilmes.controls['genero'].value;
 

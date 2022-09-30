@@ -13,7 +13,7 @@ export class SalvarGeneroService {
   public readonly loading = this._loading.asObservable();
 
   private listaGeneros: any[]; // criando um array de lista de generos
-  private url = "http://localhost:3000/generos"; // para chamar o local de armazenamento do service
+  private url = "https://633741355327df4c43d23265.mockapi.io/genero"; // para chamar o local de armazenamento do service
 
   constructor(private httpClient: HttpClient) {
     this.listaGeneros = [] // lista de Genero

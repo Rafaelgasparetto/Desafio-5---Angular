@@ -13,7 +13,7 @@ export class SalvarFilmeService {
   public readonly loading = this._loading.asObservable();
 
   private listaFilmes: any[]; // criando um array de lista de filmes
-  private url = "http://localhost:3000/filmes"; // para chamar o local de armazenamento do service
+  private url = "https://633741355327df4c43d23265.mockapi.io/filme"; // para chamar o local de armazenamento do service
 
 
 

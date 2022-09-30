@@ -46,6 +46,27 @@ export class GeneroComponent implements OnInit {
 
   }
 
+  nextId(){
+    
+    console.log(this.generos.length);
+    let maiorId = 0;
+    // let maiorId: number = this.clientes[(this.clientes.length) - 1].id
+    for (let i = 0; i < this.generos.length; i++) {
+      this.generos[i].id
+      if(this.generos.length > 0){
+        maiorId = this.generos[i].id
+      }
+      
+    }
+    maiorId++;
+    console.log(maiorId);
+
+    return maiorId;
+  }
+
+
+
+
   // ------------------------------ Função para abrir o Dialog -----------------------------
 
   openDialog(id: number, enterAnimationDuration: string,
@@ -91,7 +112,8 @@ export class GeneroComponent implements OnInit {
 
     this.salvarGeneroService.showLoading(); // chamando o Spinner
 
-    const id = this.generos[this.generos.length - 1].id +1; //adicionando +1 id no ultimo id do genero
+    const id = this.nextId();
+    // const id = this.generos[this.generos.length - 1].id +1; //adicionando +1 id no ultimo id do genero
     const genero = this.formCadastrarGenero.controls['genero'].value; // atribuir os valores do input nas variaveis
     const tipoGenero: Genero = {id: id, generoNome: genero} // fazendo um objeto com as informaçoes do input
 

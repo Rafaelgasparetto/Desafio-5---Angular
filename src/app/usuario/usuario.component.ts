@@ -50,6 +50,27 @@ export class UsuarioComponent implements OnInit {
   }
 
 
+  nextId(){
+    console.log(this.clientes.length);
+    let maiorId = 0;
+    // let maiorId: number = this.clientes[(this.clientes.length) - 1].id
+    for (let i = 0; i < this.clientes.length; i++) {
+      this.clientes[i].id
+      if(this.clientes.length > 0){
+        maiorId = this.clientes[i].id
+      }
+      
+    }
+    maiorId++;
+    console.log(maiorId);
+
+    return maiorId;
+  }
+
+
+
+
+
   // ------------------------------ Função para abrir o Dialog -----------------------------
 
   openDialog(id: number, enterAnimationDuration: string,
@@ -112,7 +133,8 @@ export class UsuarioComponent implements OnInit {
 
     this.salvarClientesService.showLoading();
 
-    const id = (this.clientes[(this.clientes.length) - 1].id) +1; //pegando o id e colocando +1 para adicionar o id na ultima posição
+    const id = this.nextId();
+    // const id = (this.clientes[(this.clientes.length) - 1].id) +1; //pegando o id e colocando +1 para adicionar o id na ultima posição
     const nome = this.formCadastrarUsuario.controls["nome"].value;
     const email = this.formCadastrarUsuario.controls["email"].value; // pegando os valores do inputs componente usuario
     const tel = this.formCadastrarUsuario.controls["tel"].value;

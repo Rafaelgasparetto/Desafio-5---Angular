@@ -31,10 +31,6 @@
     {
       "id": 3,
       "generoNome": "Comédia"
-    },
-    {
-      "id": 4,
-      "generoNome": "Drama"
     }
   ],
   "filmes": [
@@ -47,11 +43,6 @@
       "id": 2,
       "filmeNome": "Até o ultimo homem",
       "generoFilme": "Ação"
-    },
-    {
-      "id": 3,
-      "filmeNome": "O máscara",
-      "generoFilme": "Comédia"
     }
   ]
 }
